@@ -1,0 +1,7 @@
+Home Screen – Shows your latest sleep score & suggestions
+
+Log Sleep Entry – Manual log (bedtime, wake time, mood)
+
+Sleep History – Chart and list view of previous logs
+
+Basic Sleep Feedback – Rule-based advice based on logs
