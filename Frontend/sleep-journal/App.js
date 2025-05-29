@@ -2,7 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import Homescreen from './screens/Homescreen'; 
+import Homescreen from './screens/Homescreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,4 +15,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
