@@ -1,4 +1,4 @@
-// src/screens/ProfileScreen.js
+//ProfileScreen.js
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Button, ScrollView, TextInput, Alert } from 'react-native';
 
@@ -8,9 +8,9 @@ function ProfileScreen({ navigation }) {
   const [userBio, setUserBio] = useState('A passionate React Native developer.');
 
   const handleSaveChanges = () => {
-    // Here you would typically send data to a backend API
+
     Alert.alert('Success', 'Profile changes saved!');
-    // In a real app, you might update global state or a database
+  e
   };
 
   return (
@@ -60,7 +60,7 @@ function ProfileScreen({ navigation }) {
         <View style={styles.buttonContainer}>
           <Button
             title="Go Back Home"
-            onPress={() => navigation.goBack()} // Goes back to the previous screen in the stack
+            onPress={() => navigation.goBack()} // 
             color="#6c757d"
           />
         </View>
@@ -71,18 +71,18 @@ function ProfileScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   scrollContainer: {
-    flexGrow: 1, // Allows the scrollview content to grow
+    flexGrow: 1, 
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#f8f9fa',
-    paddingVertical: 30, // Add some vertical padding
+    paddingVertical: 30, 
   },
   container: {
     width: '90%',
     backgroundColor: '#fff',
     borderRadius: 10,
     padding: 20,
-    shadowColor: '#000', // Basic shadow for a card-like effect
+    shadowColor: '#000', 
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 5,
@@ -114,8 +114,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#f8f9fa',
   },
   bioInput: {
-    height: 100, // Larger height for bio
-    textAlignVertical: 'top', // Aligns text to the top for multiline
+    height: 100, 
+    textAlignVertical: 'top', 
     paddingVertical: 10,
   },
   buttonContainer: {

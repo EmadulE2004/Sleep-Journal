@@ -1,11 +1,10 @@
-// MyNewSleepJournalApp/App.js
+// MyNewSleepJournalApp/App.js done
 
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-// IMPORT YOUR SCREENS FROM THE './screens/' SUBFOLDER (ensure this folder exists and files are in it)
 import HomeScreen from './screens/HomeScreen';
 import LockScreen from './screens/LockScreen';
 import ProfileScreen from './screens/ProfileScreen';
@@ -16,9 +15,9 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Lock" // Start with the LockScreen
+        initialRouteName="Lock" 
         screenOptions={{
-          headerShown: false // Hide default header for all screens by default
+          headerShown: false 
         }}
       >
         <Stack.Screen

@@ -14,20 +14,20 @@ function LockScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, // Takes up the whole screen
+    flex: 1, 
     justifyContent: 'center', // Centers content vertically
     alignItems: 'center',    // Centers content horizontally
-    backgroundColor: 'lightgray', // A clear, distinct background color
+    backgroundColor: 'lightgray', // don't hate on gray Mahfuz
   },
   title: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: 'darkblue', // A dark, distinct text color
+    color: 'darkblue', 
     marginBottom: 10,
   },
   subtitle: {
     fontSize: 16,
-    color: 'darkgreen', // Another distinct text color
+    color: 'darkgreen', 
   },
 });
 
