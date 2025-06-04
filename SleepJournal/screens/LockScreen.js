@@ -7,8 +7,6 @@ function LockScreen({ navigation }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-
-
   //this stuff deals with the login//
   const handleLogin = () => {
     if (username && password) {
@@ -53,14 +51,14 @@ const styles = StyleSheet.create({
     flex: 1, 
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black',
+    backgroundColor: '#233C67',
     padding: 20,
   },
   title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: 'yellow', 
-    marginBottom: 30,
+    fontFamily: 'LilitaOne',
+    fontSize: 40,
+    color: '#CCDBEE', 
+    marginBottom: 25,
   },
   input: {
     width: '100%',
