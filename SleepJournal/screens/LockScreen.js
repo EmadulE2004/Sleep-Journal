@@ -1,13 +1,49 @@
 // LockScreen.js
 
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from 'react-native';
 
 function LockScreen({ navigation }) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+
+
+  //this stuff deals with the login//
+  const handleLogin = () => {
+    if (username && password) {
+      Alert.alert('Success', 'Login successful!');
+      navigation.navigate('Home'); 
+    } else {
+      Alert.alert('Error', 'Please enter both username and password');
+    }
+  };
+
   return (
+
     <View style={styles.container}>
-      <Text style={styles.title}>🔒 LOCK SCREEN TEST 🔒</Text>
-      <Text style={styles.subtitle}>If you see this, it's working!</Text>
+      <Text style={styles.title}> Sleep Journal</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Username"
+        value={username}
+        onChangeText={setUsername}
+        autoCapitalize="none"
+      />
+
+      {/* Password input */}
+      <TextInput
+        style={styles.input}
+        placeholder="Password"
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry
+      />
+
+      {/* Login button */}
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+        <Text style={styles.buttonText}>Login</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -15,19 +51,40 @@ function LockScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1, 
-    justifyContent: 'center', // Centers content vertically
-    alignItems: 'center',    // Centers content horizontally
-    backgroundColor: 'lightgray', // don't hate on gray Mahfuz
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'black',
+    padding: 20,
   },
   title: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: 'darkblue', 
-    marginBottom: 10,
+    color: 'yellow', 
+    marginBottom: 30,
   },
-  subtitle: {
+  input: {
+    width: '100%',
+    maxWidth: 300,
+    height: 45,
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    paddingHorizontal: 15,
+    marginBottom: 15,
+    borderWidth: 1,
+    borderColor: '#ccc',
+  },
+  button: {
+    width: '100%',
+    maxWidth: 300,
+    backgroundColor: 'green',
+    paddingVertical: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#fff',
     fontSize: 16,
-    color: 'darkgreen', 
+    fontWeight: 'bold',
   },
 });
 
