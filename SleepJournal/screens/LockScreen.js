@@ -21,9 +21,11 @@ function LockScreen({ navigation }) {
 
     <View style={styles.container}>
       <Text style={styles.title}> Sleep Journal</Text>
+      <View style={styles.loginBox}>
       <TextInput
         style={styles.input}
         placeholder="Username"
+        placeholderTextColor={'black'}
         value={username}
         onChangeText={setUsername}
         autoCapitalize="none"
@@ -33,6 +35,7 @@ function LockScreen({ navigation }) {
       <TextInput
         style={styles.input}
         placeholder="Password"
+        placeholderTextColor={'black'}
         value={password}
         onChangeText={setPassword}
         secureTextEntry
@@ -43,10 +46,23 @@ function LockScreen({ navigation }) {
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
     </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  loginBox: {
+    width: '100%',
+    maxWidth: 300,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 20,
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
   container: {
     flex: 1, 
     justifyContent: 'center',
@@ -55,8 +71,9 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   title: {
-    fontFamily: 'LilitaOne',
-    fontSize: 40,
+    fontFamily: 'roboto',
+    fontWeight: 'bold',
+    fontSize: 45,
     color: '#CCDBEE', 
     marginBottom: 25,
   },
@@ -64,23 +81,23 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 300,
     height: 45,
-    backgroundColor: '#fff',
-    borderRadius: 8,
+    backgroundColor: '#F0F0F0',
+    borderRadius: 15,
     paddingHorizontal: 15,
     marginBottom: 15,
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: 'black',
   },
   button: {
     width: '100%',
     maxWidth: 300,
     backgroundColor: 'green',
     paddingVertical: 12,
-    borderRadius: 8,
+    borderRadius: 15,
     alignItems: 'center',
   },
   buttonText: {
-    color: '#fff',
+    color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
   },

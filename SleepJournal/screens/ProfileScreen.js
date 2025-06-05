@@ -10,7 +10,7 @@ function ProfileScreen({ navigation }) {
   const handleSaveChanges = () => {
 
     Alert.alert('Success', 'Profile changes saved!');
-  e
+  
   };
 
   return (
