@@ -7,7 +7,6 @@ function HomeScreen({ navigation }) {
     <View style={styles.container}>
         <View>
             <Text style={styles.title}>Welcome Home!</Text>
-            <Button title="Logout" onPress={() => navigation.replace('Lock')} />
         </View>
 
         <View style = {styles.navBar}>

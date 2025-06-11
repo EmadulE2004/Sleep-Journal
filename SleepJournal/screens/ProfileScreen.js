@@ -76,6 +76,13 @@ function ProfileScreen({ navigation }) {
             color="#6c757d"
           />
         </View>
+
+        <View style = {styles.buttonContainer}>
+          <Button
+            title = "Logout"
+            onPress = {() => navigation.replace('Lock')}
+          />
+        </View>
       </View>
     </ScrollView>
   );
