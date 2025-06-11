@@ -7,6 +7,7 @@ export function UserProvider({ children }) {
     email: '',
     username: '',
     password: '',
+    bio: '',
   });
 
   return (

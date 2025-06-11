@@ -3,16 +3,19 @@ import React, { useContext, useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Button, ScrollView, TextInput, Alert } from 'react-native';
 import { UserContext } from '../UserContext';
 
+
 function ProfileScreen({ navigation }) {
   const { user, setUser } = useContext(UserContext);
 
   const [username, setUsername] = useState(user.username);
   const [userEmail, setUserEmail] = useState(user.email);
-  const [userBio, setUserBio] = useState('A passionate React Native developer.');
+  const [userBio, setUserBio] = useState(user.bio);
+  
 
   useEffect(() => {
     setUsername(user.username);
     setUserEmail(user.email);
+    setUserBio(user.bio);
   }, [user]);
 
   const handleSaveChanges = () => {
@@ -20,6 +23,7 @@ function ProfileScreen({ navigation }) {
       ...user,
       username: username,
       email: userEmail,
+      bio: userBio,
     });
     Alert.alert('Success', 'Profile changes saved!');
   };
