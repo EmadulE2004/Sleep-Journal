@@ -17,7 +17,7 @@ function LockScreen({ navigation }) {
         email: Email,
         username,
         password,
-      }); // Save to context
+      }); 
       Alert.alert('Success', 'Login successful!');
       navigation.navigate('Home'); 
     } else {

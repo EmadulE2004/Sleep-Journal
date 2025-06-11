@@ -10,7 +10,7 @@ function HomeScreen({ navigation }) {
     <View style={styles.container}>
         <View>
             <Text style={styles.title}>
-                `Welcome, {user.username}!`
+                Good Morning, {user.username}!
             </Text>
         </View>
 
@@ -46,14 +46,17 @@ const styles = StyleSheet.create({
         fontSize: 24, 
         marginBottom: 20 
     },
-    
     navBar: {
+        fontFamily: 'roboto',
+        marginTop: 545,
         flexDirection: 'row',
         justifyContent: 'space-around',
-        backgroundColor: 'white',
-        paddingVertical: 14,
-        borderTopWidth: 1,
-        borderTopColor: 'black'
+        backgroundColor: 'transparent',
+        paddingVertical: 10,
+        borderTopWidth: 0,
+        borderTopColor: 'black',
+        gap: 35,
+
     },
 
     navIcon: {
