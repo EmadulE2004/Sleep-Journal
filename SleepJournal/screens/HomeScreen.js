@@ -10,7 +10,7 @@ function HomeScreen({ navigation }) {
     <View style={styles.container}>
         <View>
             <Text style={styles.title}>
-                `Welcome, ${user.username}!`
+                `Welcome, {user.username}!`
             </Text>
         </View>
 
