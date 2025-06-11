@@ -1,16 +1,27 @@
 //ProfileScreen.js
-import React, { useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Button, ScrollView, TextInput, Alert } from 'react-native';
+import { UserContext } from '../UserContext';
 
 function ProfileScreen({ navigation }) {
-  const [userName, setUserName] = useState('John Doe');
-  const [userEmail, setUserEmail] = useState('john.doe@example.com');
+  const { user, setUser } = useContext(UserContext);
+
+  const [userName, setUserName] = useState(user.name);
+  const [userEmail, setUserEmail] = useState(user.email);
   const [userBio, setUserBio] = useState('A passionate React Native developer.');
 
-  const handleSaveChanges = () => {
+  useEffect(() => {
+    setUserName(user.name);
+    setUserEmail(user.email);
+  }, [user]);
 
+  const handleSaveChanges = () => {
+    setUser({
+      ...user,
+      name: userName,
+      email: userEmail,
+    });
     Alert.alert('Success', 'Profile changes saved!');
-  
   };
 
   return (

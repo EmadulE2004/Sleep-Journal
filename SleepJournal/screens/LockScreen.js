@@ -1,17 +1,25 @@
 // LockScreen.js
 
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { UserContext } from '../UserContext'; // Add this import
 
 function LockScreen({ navigation }) {
   const [Name, setName] = useState('');
   const [Email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const { setUser } = useContext(UserContext); // Add this line
 
   //this stuff deals with the login//
   const handleLogin = () => {
     if (username && password) {
+      setUser({
+        name: Name,
+        email: Email,
+        username,
+        password,
+      }); // Save to context
       Alert.alert('Success', 'Login successful!');
       navigation.navigate('Home'); 
     } else {
