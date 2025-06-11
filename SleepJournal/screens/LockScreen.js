@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from 'react-native';
 
 function LockScreen({ navigation }) {
+  const [Name, setName] = useState('');
+  const [Email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -22,6 +24,21 @@ function LockScreen({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.title}> Sleep Journal</Text>
       <View style={styles.loginBox}>
+        <TextInput
+          style={styles.input}
+          placeholder="Name"
+          placeholderTextColor={'black'}
+          value={Name}
+          onChangeText={setName}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          placeholderTextColor={'black'}
+          value={Email}
+          onChangeText={setEmail}
+          autoCapitalize="none"
+        />
       <TextInput
         style={styles.input}
         placeholder="Username"
