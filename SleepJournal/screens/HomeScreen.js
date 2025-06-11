@@ -6,11 +6,32 @@ import { UserContext } from '../UserContext'
 function HomeScreen({ navigation }) {
     const {user} = useContext(UserContext);
 
+    function timeGreeting(user) {
+        const time = new Date().getHours();
+        let greet = "";
+
+        if (time < 12) {
+            greet = "Good Morning";
+        } else if (time < 18) {
+            greet = "Good Afternoon";
+        } else if (time < 22) {
+            greet = "Good Evening";
+        } else {
+            greet = "You're up late";
+        }
+
+        let fullGreet = "";
+        if(user && user.username) {
+            fullGreet = `${greet}, ${user.username}.`;
+        } 
+        return fullGreet;
+    }
+
   return (
     <View style={styles.container}>
         <View>
             <Text style={styles.title}>
-                Good Morning, {user.username}!
+                {timeGreeting(user)}
             </Text>
         </View>
 
@@ -56,7 +77,6 @@ const styles = StyleSheet.create({
         borderTopWidth: 0,
         borderTopColor: 'black',
         gap: 35,
-
     },
 
     navIcon: {
