@@ -5,7 +5,6 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from 'reac
 import { UserContext } from '../UserContext'; // Add this import
 
 function LockScreen({ navigation }) {
-  const [Name, setName] = useState('');
   const [Email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -15,7 +14,6 @@ function LockScreen({ navigation }) {
   const handleLogin = () => {
     if (username && password) {
       setUser({
-        name: Name,
         email: Email,
         username,
         password,
@@ -23,7 +21,7 @@ function LockScreen({ navigation }) {
       Alert.alert('Success', 'Login successful!');
       navigation.navigate('Home'); 
     } else {
-      Alert.alert('Error', 'Please enter both username and password');
+      Alert.alert('Oops', 'You forgot to fill in some fields!');
     }
   };
 
@@ -32,13 +30,7 @@ function LockScreen({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.title}> Sleep Journal</Text>
       <View style={styles.loginBox}>
-        <TextInput
-          style={styles.input}
-          placeholder="Name"
-          placeholderTextColor={'black'}
-          value={Name}
-          onChangeText={setName}
-        />
+
         <TextInput
           style={styles.input}
           placeholder="Email"

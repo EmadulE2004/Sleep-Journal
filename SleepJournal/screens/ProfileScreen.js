@@ -6,19 +6,19 @@ import { UserContext } from '../UserContext';
 function ProfileScreen({ navigation }) {
   const { user, setUser } = useContext(UserContext);
 
-  const [userName, setUserName] = useState(user.name);
+  const [username, setUsername] = useState(user.username);
   const [userEmail, setUserEmail] = useState(user.email);
   const [userBio, setUserBio] = useState('A passionate React Native developer.');
 
   useEffect(() => {
-    setUserName(user.name);
+    setUsername(user.username);
     setUserEmail(user.email);
   }, [user]);
 
   const handleSaveChanges = () => {
     setUser({
       ...user,
-      name: userName,
+      username: username,
       email: userEmail,
     });
     Alert.alert('Success', 'Profile changes saved!');
@@ -30,11 +30,12 @@ function ProfileScreen({ navigation }) {
         <Text style={styles.title}>My Profile</Text>
 
         <View style={styles.field}>
-          <Text style={styles.label}>Name:</Text>
+          <Text style={styles.label}>Username:</Text>
           <TextInput
             style={styles.input}
-            value={userName}
-            onChangeText={setUserName}
+            value={username}
+            onChangeText={setUsername}
+            autoCapitalize="none"
           />
         </View>
 
