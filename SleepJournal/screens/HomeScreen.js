@@ -1,12 +1,17 @@
 // src/screens/HomeScreen.js (or just screens/HomeScreen.js)
-import React from 'react';
-import { View, Text, StyleSheet, Button, TouchableOpacity, Image } from 'react-native';
+import React, {useContext} from 'react';
+import { View, Text, StyleSheet, Button, TouchableOpacity, Image,} from 'react-native';
+import { UserContext } from '../UserContext'
 
 function HomeScreen({ navigation }) {
+    const {user} = useContext(UserContext);
+
   return (
     <View style={styles.container}>
         <View>
-            <Text style={styles.title}>Welcome Home!</Text>
+            <Text style={styles.title}>
+                `Welcome, ${user.username}!`
+            </Text>
         </View>
 
         <View style = {styles.navBar}>
