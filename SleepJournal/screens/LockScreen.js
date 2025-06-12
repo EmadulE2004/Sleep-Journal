@@ -1,7 +1,7 @@
 // LockScreen.js
 
 import React, { useState, useContext } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert} from 'react-native';
 import { UserContext } from '../UserContext'; // Add this import
 
 function LockScreen({ navigation }) {

@@ -1,12 +1,12 @@
 // src/screens/HomeScreen.js (or just screens/HomeScreen.js)
 import React, {useContext, useState} from 'react';
-import { View, Text, StyleSheet, Button, TouchableOpacity, Image,} from 'react-native';
+import { View, Text, StyleSheet, Button, TouchableOpacity, Image, ImageBackground} from 'react-native';
 import { UserContext } from '../UserContext'
 import clockImage from '../assets/images/clock.jpg';
+import background from '../assets/backgrounds/sleepjournalbackground.png';
 
 function HomeScreen({ navigation }) {
     const {user} = useContext(UserContext);
-
 
     function DateDisplay() {
         const [currentDate] = useState(new Date());
@@ -19,8 +19,6 @@ function HomeScreen({ navigation }) {
         );
     }
    
-
-
     function timeGreeting(user) {
         const time = new Date().getHours();
         let greet = "";
@@ -43,6 +41,7 @@ function HomeScreen({ navigation }) {
     }
 
   return (
+    <ImageBackground source={background} style={styles.background}>
     <View style={styles.container}>
         <View>
             <Text style={styles.title}>
@@ -76,6 +75,7 @@ function HomeScreen({ navigation }) {
             </TouchableOpacity>
         </View>
     </View>
+    </ImageBackground>
 );
 
 }
@@ -87,18 +87,21 @@ const styles = StyleSheet.create({
         fontSize: 20,
         right: 1,
         marginTop: 10,
+        color: 'white'
     },
 
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: 'transparent'
     },
 
     title: {
         fontSize: 24,
         marginTop: 100,
         left: 12,
+        color: 'white'
     },
 
     clockContainer: {
@@ -117,13 +120,23 @@ const styles = StyleSheet.create({
     navBar: {
         position: 'absolute',
         bottom: 20,
+        left: 20,
+        right: 20,
         flexDirection: 'row',
         justifyContent: 'space-around',
-        backgroundColor: 'transparent',
+        backgroundColor: 'white',
         paddingVertical: 10,
+        paddingHorizontal: 20,
         borderTopWidth: 0,
         borderTopColor: 'black',
         gap: 35,
+        shadowRadius: 4,
+        elevation: 5,
+        shadowColor: 'black',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        borderRadius: 40,
     },
 
     navIcon: {
@@ -134,6 +147,11 @@ const styles = StyleSheet.create({
         width: 50,
         height: 50,
         resizeMode: 'contain'
+    },
+
+    background: {
+        flex: 1,
+        resizeMode: 'cover'
     }
 });
 
