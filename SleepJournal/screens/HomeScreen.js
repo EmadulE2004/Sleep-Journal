@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     dateText: {
         fontFamily: 'Arial',
         fontSize: 20,
-        right: 1,
+        right: -5,
         marginTop: 10,
         color: 'white'
     },
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         marginTop: 100,
-        left: 12,
+        left: 1,
         color: 'white'
     },
 
@@ -113,8 +113,8 @@ const styles = StyleSheet.create({
     clockImage: {
         marginBottom: 200,
         backgroundColor: 'clear',
-        width: 200,
-        height: 200,
+        width: 300,
+        height: 300,
         resizeMode: 'contain'
     },
     navBar: {

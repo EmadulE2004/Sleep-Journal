@@ -1,36 +1,39 @@
 // LockScreen.js
 
 import React, { useState, useContext } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert} from 'react-native';
-import { UserContext } from '../UserContext'; // Add this import
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { UserContext } from '../UserContext';
 
 function LockScreen({ navigation }) {
   const [Email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { setUser } = useContext(UserContext); // Add this line
+  const [showPassword, setShowPassword] = useState(false); // Add this line
+  const { setUser } = useContext(UserContext);
 
-  //this stuff deals with the login//
   const handleLogin = () => {
-    if (username && password) {
+    if (
+      username &&
+      password.length === 8 &&
+      (password.includes('@') || password.includes('!') || password.includes('#') || password.includes('&')) &&
+      (Email.includes('.') && Email.includes('@'))
+    ) {
       setUser({
         email: Email,
         username,
         password,
-      }); 
+      });
       Alert.alert('Success', 'Login successful!');
-      navigation.navigate('Home'); 
+      navigation.navigate('Home');
     } else {
       Alert.alert('Oops', 'You forgot to fill in some fields!');
     }
   };
 
   return (
-
     <View style={styles.container}>
       <Text style={styles.title}> Sleep Journal</Text>
       <View style={styles.loginBox}>
-
         <TextInput
           style={styles.input}
           placeholder="Email"
@@ -39,30 +42,37 @@ function LockScreen({ navigation }) {
           onChangeText={setEmail}
           autoCapitalize="none"
         />
-      <TextInput
-        style={styles.input}
-        placeholder="Username"
-        placeholderTextColor={'black'}
-        value={username}
-        onChangeText={setUsername}
-        autoCapitalize="none"
-      />
-
-      {/* Password input */}
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        placeholderTextColor={'black'}
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />
-
-      {/* Login button */}
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Login</Text>
-      </TouchableOpacity>
-    </View>
+        <TextInput
+          style={styles.input}
+          placeholder="Username"
+          placeholderTextColor={'black'}
+          value={username}
+          onChangeText={setUsername}
+          autoCapitalize="none"
+        />
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <TextInput
+            style={[styles.input, { flex: 1, marginBottom: 0 }]}
+            placeholder="Password"
+            placeholderTextColor={'black'}
+            value={password}
+            onChangeText={text => setPassword(text.slice(0, 8))}
+            secureTextEntry={!showPassword}
+            maxLength={8}
+          />
+          <TouchableOpacity
+            onPress={() => setShowPassword(!showPassword)}
+            style={{ marginLeft: 10, padding: 5 }}
+          >
+            <Text style={{ color: 'blue', fontWeight: 'bold' }}>
+              {showPassword ? 'Hide' : 'Show'}
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <TouchableOpacity style={styles.button} onPress={handleLogin}>
+          <Text style={styles.buttonText}>Login</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -107,6 +117,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width: '100%',
+    marginTop: 10,
     maxWidth: 300,
     backgroundColor: 'green',
     paddingVertical: 12,

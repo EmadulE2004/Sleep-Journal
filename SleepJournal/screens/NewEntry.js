@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { 
   View, 
   TextInput, 
@@ -8,13 +8,16 @@ import {
   KeyboardAvoidingView,
   Platform 
 } from 'react-native';
+import { JournalContext } from '../JournalContext';
 
 const NewEntry = ({ navigation }) => {
   const [entry, setEntry] = useState('');
+  const { addEntry } = useContext(JournalContext);
 
   const handleSave = () => {
-    // TODO: Implement save functionality
-    console.log('Entry saved:', entry);
+    if (entry.trim()) {
+      addEntry(entry);
+    }
     navigation.goBack();
   };
 
@@ -32,7 +35,7 @@ const NewEntry = ({ navigation }) => {
         autoFocus
       />
       <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
-        <Text style={styles.saveButtonText}>Save</Text>
+        <Text style={styles.saveButtonText}>Log</Text>
       </TouchableOpacity>
     </KeyboardAvoidingView>
   );
@@ -41,29 +44,32 @@ const NewEntry = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    padding: 20,
+    backgroundColor: 'white',
+    padding: 25,
     paddingTop: 60
   },
   textInput: {
+    marginBottom: 25,
     flex: 1,
     fontSize: 16,
     lineHeight: 24,
     textAlignVertical: 'top',
     padding: 15,
-    backgroundColor: '#f8f9fa',
-    borderRadius: 10
+    backgroundColor: 'lightgray',
+    borderRadius: 16
   },
   saveButton: {
+    width: '50%',
+    alignSelf: 'center',
     backgroundColor: '#007AFF',
     padding: 15,
-    borderRadius: 10,
-    marginTop: 20,
+    borderRadius: 15,
+    marginBottom: 50,
     alignItems: 'center'
   },
   saveButtonText: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: 17,
     fontWeight: '600'
   }
 });

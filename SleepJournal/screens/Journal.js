@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
-import { View, TouchableOpacity, StyleSheet, Text, Image } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Text, Image, ScrollView } from 'react-native';
 import { UserContext } from '../UserContext';
+import { JournalContext } from '../JournalContext'; // <-- Add this
 import PencilIcon from '../assets/icons/journalAddButton.png';
 
 const Journal = ({ navigation }) => {
-  const {user} = useContext(UserContext);
+  const { user } = useContext(UserContext);
+  const { entries } = useContext(JournalContext); // <-- Add this
 
   function timeGreeting(user) {
         const time = new Date().getHours();
@@ -36,11 +38,21 @@ const Journal = ({ navigation }) => {
         <Text style={styles.title}>My Notes</Text>
       </View>
       <View style={{ flex: 1 }}>
-        <View style={styles.centered}>
-          <Text style={styles.placeholderText}>
-            No journal entries yet.
-          </Text>
-        </View>
+        {entries.length === 0 ? (
+          <View style={styles.centered}>
+            <Text style={styles.placeholderText}>
+              No journal entries yet.
+            </Text>
+          </View>
+        ) : (
+          <ScrollView contentContainerStyle={{ padding: 20 }}>
+            {entries.map((entry, idx) => (
+              <View key={idx} style={{ marginBottom: 20, backgroundColor: '#f0f0f0', borderRadius: 12, padding: 15 }}>
+                <Text style={{ fontSize: 16 }}>{entry}</Text>
+              </View>
+            ))}
+          </ScrollView>
+        )}
       </View>
 
       <TouchableOpacity 
@@ -143,7 +155,6 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     borderRadius: 40,
   },
-
   navIcon: {
     alignItems: 'center'
   },
