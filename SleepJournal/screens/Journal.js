@@ -45,10 +45,10 @@ const Journal = ({ navigation }) => {
             </Text>
           </View>
         ) : (
-          <ScrollView contentContainerStyle={{ padding: 20 }}>
+          <ScrollView contentContainerStyle={styles.entriesContainer}>
             {entries.map((entry, idx) => (
-              <View key={idx} style={{ marginBottom: 20, backgroundColor: '#f0f0f0', borderRadius: 12, padding: 15 }}>
-                <Text style={{ fontSize: 16 }}>{entry}</Text>
+              <View key={idx} style={styles.entryCard}>
+                <Text style={styles.entryText}>{entry}</Text>
               </View>
             ))}
           </ScrollView>
@@ -84,6 +84,10 @@ const Journal = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
   header: {
     padding: 15,
     backgroundColor: '#f8f8f8',
@@ -125,7 +129,7 @@ const styles = StyleSheet.create({
   },
   addButton: {
     position: 'absolute',
-    bottom: 25,  
+    bottom: 750,  
     right: 15,
     width: 40,   
     height: 40,  
@@ -164,7 +168,27 @@ const styles = StyleSheet.create({
     height: 50,
     resizeMode: 'contain'
   },
-
+  entriesContainer: {
+    padding: 20,
+  },
+  entryCard: {
+    marginBottom: 20,
+    backgroundColor: '#f0f0f0',
+    borderRadius: 12,
+    padding: 15,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  entryText: {
+    fontSize: 16,
+    color: '#333',
+  },
 });
 
 export default Journal;

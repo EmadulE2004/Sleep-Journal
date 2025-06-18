@@ -6,7 +6,12 @@ export const JournalProvider = ({ children }) => {
   const [entries, setEntries] = useState([]);
 
   const addEntry = (entry) => {
-    setEntries(prev => [entry, ...prev]);
+    console.log('Adding entry:', entry);
+    setEntries(prev => {
+      const newEntries = [entry, ...prev];
+      console.log('Updated entries:', newEntries);
+      return newEntries;
+    });
   };
 
   return (

@@ -16,7 +16,8 @@ const NewEntry = ({ navigation }) => {
 
   const handleSave = () => {
     if (entry.trim()) {
-      addEntry(entry);
+      console.log('Adding entry:', entry.trim()); // Add this debug log
+      addEntry(entry.trim());
     }
     navigation.goBack();
   };
