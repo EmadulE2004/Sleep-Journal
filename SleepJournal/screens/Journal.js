@@ -1,18 +1,54 @@
-import React from 'react';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import React, { useContext } from 'react';
+import { View, TouchableOpacity, StyleSheet, Text, Image } from 'react-native';
+import { UserContext } from '../UserContext';
 
 const Journal = ({ navigation }) => {
+  const {user} = useContext(UserContext);
+
+  function timeGreeting(user) {
+        const time = new Date().getHours();
+        let greet = "";
+
+        if (time < 12) {
+            greet = "Good Morning";
+        } else if (time < 18) {
+            greet = "Good Afternoon";
+        } else if (time < 22) {
+            greet = "Good Evening";
+        } else {
+            greet = "You're up late";
+        }
+
+        let fullGreet = "";
+        if(user && user.username) {
+            fullGreet = `${greet}, ${user.username}.`;
+        } 
+        return fullGreet;
+    }
+
   return (
     <View style={styles.container}>
-        <View style={{ flex: 1 }}>
+      <View style = {styles.header}>
+        <Text style={styles.greet}>
+          {timeGreeting(user)}
+        </Text>
+        <Text style = {styles.title}>My Notes</Text>
+      </View>
+       <View style={{ flex: 1 }}>
             {/* Journal stuff */}
+            <View style = {styles.centered}>
+
+              <Text style = {styles.placeholderText}>
+                No journal entries yet.
+              </Text>
+            </View>
         </View>
+
       <TouchableOpacity 
         style={styles.addButton}
         onPress={() => navigation.navigate('NewEntry')}
       >
-        <Ionicons name="add-circle" size={60} color="#4A90E2" />
+        <Image source = {require('../assets/icons/journalAddButton.png')} style = {styles.addButton}/>
       </TouchableOpacity>
     </View>
   );
@@ -25,8 +61,9 @@ const styles = StyleSheet.create({
   },
   addButton: {
     position: 'absolute',
-    bottom: 30,
-    right: 30,
+    top: 40,
+    right: 20,
+    zIndex: 10,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
