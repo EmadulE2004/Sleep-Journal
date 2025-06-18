@@ -62,8 +62,8 @@ export default function App() {
               name = "NewEntry"
               component = {NewEntry}
               options = {{
-                title: "NewEntry",
-                headerShown: true
+                title: "New Journal Entry",
+                headerBackTitle: 'Back'
               }}
             />
           </Stack.Group>
