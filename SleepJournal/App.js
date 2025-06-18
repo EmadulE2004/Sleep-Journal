@@ -9,6 +9,8 @@ import HomeScreen from './screens/HomeScreen';
 import LockScreen from './screens/LockScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import { UserProvider } from './UserContext'; // Add this import
+import Journal from './screens/Journal';
+import NewEntry from './screens/NewEntry';
 
 const Stack = createStackNavigator();
 
@@ -25,18 +27,46 @@ export default function App() {
           <Stack.Screen
             name="Lock"
             component={LockScreen}
-            options={{ headerShown: false }}
+            options={{ 
+              headerShown: false 
+            }}
           />
           <Stack.Screen
             name="Home"
             component={HomeScreen}
-            options={{ title: 'Welcome', headerShown: false }}
+            options={{
+               title: 'Welcome', 
+               headerShown: false 
+              }}
           />
           <Stack.Screen
             name="Profile"
             component={ProfileScreen}
-            options={{ title: 'My Profile', headerShown: true }}
+            options={{ 
+              title: 'My Profile', 
+              headerShown: true 
+            }}
           />
+
+          <Stack.Screen
+            name = "Journal"
+            component = {Journal}
+            options = {{
+              title: 'Journal',
+              headerShown: false
+            }}
+          />
+
+          <Stack.Group screenOptions = {{presentation: 'modal'}}>
+            <Stack.Screen
+              name = "NewEntry"
+              component = {NewEntry}
+              options = {{
+                title: "NewEntry",
+                headerShown: true
+              }}
+            />
+          </Stack.Group>
         </Stack.Navigator>
         <StatusBar style="auto" />
       </NavigationContainer>
