@@ -54,7 +54,7 @@ function HomeScreen({ navigation }) {
         <View style={styles.clockContainer}>
             <AnalogClock
                 sleepStart = {22}
-                sleepEnd = {5}
+                sleepEnd = {6}
             />
         </View>
 
@@ -93,9 +93,10 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         alignItems: 'center',
         backgroundColor: 'transparent'
+        
     },
 
     title: {
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginVertical: 10
+        marginVertical: 30
     },
     clockImage: {
         marginBottom: 200,

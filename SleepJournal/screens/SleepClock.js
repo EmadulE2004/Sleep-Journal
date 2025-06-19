@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import { View } from "react-native";
 import Svg, {Line, Circle, Path} from "react-native-svg";
 
-const clockSize = 250;
+const clockSize = 320;
 const clockCenterX = clockSize / 2;
 const clockCenterY = clockSize / 2;
 const clockRadius = clockCenterX - 15;
@@ -18,8 +18,10 @@ function angleCoordinates(degree, length) {
 }
 
 function arc(start, end) {
-    const s = angleCoordinates(end, clockRadius);
-    const e = angleCoordinates(start, clockRadius);
+    const arcRadius = clockRadius - 11;
+
+    const s = angleCoordinates(end, arcRadius);
+    const e = angleCoordinates(start, arcRadius);
 
     let arcPath = 0;
     const diff = end - start;
@@ -28,7 +30,12 @@ function arc(start, end) {
         arcPath = 1;
     }
 
-    return `M ${s.x} ${s.y} A ${clockRadius} ${clockRadius} 0 ${arcPath} 0 ${e.x} ${e.y}`;
+    const path = [
+        "M", s.x, s.y,
+        "A", arcRadius, arcRadius, 0, arcPath, 0, e.x, e.y
+    ];
+
+    return path.join(" ");
 }
 
 function handLine(angle, length) {
@@ -42,7 +49,7 @@ function handLine(angle, length) {
     }
 }
 
-export default function AnalogClock({sleepStart = 22, sleepEnd = 5}) {
+export default function AnalogClock({sleepStart = 22, sleepEnd = 6}) {
     const [now, setNow] = useState(new Date());
 
     useEffect(() => {
@@ -67,6 +74,49 @@ export default function AnalogClock({sleepStart = 22, sleepEnd = 5}) {
     if(sleepEnd <= sleepStart) {
         angleEnd += 360;
     }
+    
+    const tickGap = 6;
+    angleStart += tickGap / 2;
+    angleEnd += -3;
+
+    const hTick = [];
+    const mTick = [];
+
+    for(let i = 0; i < 60; i++) {
+        const isHourTick = i % 5 === 0;
+
+        let tLenth = 13;
+        let tWitdh = 1;
+        let tOpacity = 1;
+
+        if(isHourTick) {
+            tLenth = 19;
+            tWitdh = 2;
+            tOpacity = 1;
+        }
+
+        const out = angleCoordinates(i * 6, clockRadius);
+        const inn = angleCoordinates(i * 6, clockRadius - tLenth);
+
+        const tick = (
+            <Line
+                key = {`tick-${i}`}
+                x1 = {inn.x}
+                x2 = {out.x}
+                y1 = {inn.y}
+                y2 = {out.y}
+                stroke = 'white'
+                strokeWidth = {tWitdh}
+                opacity = {tOpacity}
+            />
+        );
+
+        if(isHourTick) {
+            hTick.push(tick);
+        } else {
+            mTick.push(tick);
+        }
+    }
 
     return (
         <View>
@@ -77,15 +127,19 @@ export default function AnalogClock({sleepStart = 22, sleepEnd = 5}) {
                     r = {clockRadius}
                     stroke = 'white'
                     strokeWidth = {4}
-                    fill = 'none'
+                    fill = 'black'
                 />
+
+                {mTick}
+                {hTick}
 
                 <Path
                     d = {arc(angleStart, angleEnd)}
                     stroke = 'cyan'
-                    strokeWidth = {8}
+                    strokeWidth = {18}
                     fill = 'none'
                     strokeLinecap = 'round'
+                    opacity = {0.3}
                 />
 
                 <Line
