@@ -9,14 +9,21 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.yourcompany.sleepjournal", 
+      "usesHealthKit": true, 
+      "infoPlist": { 
+        "NSHealthShareUsageDescription": "SleepJournal needs to read your sleep data from Apple Health to provide comprehensive sleep tracking and insights.",
+        "NSHealthUpdateUsageDescription": "SleepJournal will write your recorded sleep sessions to Apple Health to keep your health data synchronized."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.sleep.sleepjournal" 
     },
     "web": {
       "bundler": "metro",
@@ -33,7 +40,8 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      "expo-health-kit" 
     ],
     "experiments": {
       "typedRoutes": true
