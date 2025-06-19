@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     bottom: 750,  
     right: 15,
     width: 40,   
-    height: 40,  
+    height: 90,  
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 10,  
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
   },
   navBar: {
     position: 'absolute',
-    top: 770,
+    top: 840,
     left: 20,
     right: 20,
     flexDirection: 'row',

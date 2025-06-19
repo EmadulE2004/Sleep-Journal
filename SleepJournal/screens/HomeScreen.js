@@ -109,15 +109,9 @@ const styles = StyleSheet.create({
     clockContainer: {
         flex: 1,
         justifyContent: 'center',
+        marginTop: -100,
         alignItems: 'center',
-        marginVertical: 30
-    },
-    clockImage: {
-        marginBottom: 200,
-        backgroundColor: 'clear',
-        width: 300,
-        height: 300,
-        resizeMode: 'contain'
+        marginVertical: 10
     },
     navBar: {
         position: 'absolute',
