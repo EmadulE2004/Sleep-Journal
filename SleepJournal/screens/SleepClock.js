@@ -30,3 +30,26 @@ function arc(start, end) {
 
     return `M ${s.x} ${s.y} A ${clockRadius} ${clockRadius} 0 ${arcPath} 0 ${e.x} ${e.y}`;
 }
+
+function handLine(angle, length) {
+    const point = angleCoordinates(angle, length);
+
+    return {
+        x1: clockCenterX,
+        x2: point.x,
+        y1: clockCenterY,
+        y2: point.y
+    }
+}
+
+export default function analogClock({sleepStart = 22, sleepEnd = 5}) {
+    const [now, setNow] = useState(new Date());
+
+    useEffect(() => {
+        const t = setInterval(() => {
+            setNow(new Date());
+        }, 1000); 
+
+        return () => clearInterval(t);
+    }, []);
+}
