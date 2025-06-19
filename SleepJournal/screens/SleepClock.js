@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { View } from "react-native";
 import Svg, {Line, Circle, Path} from "react-native-svg";
 
@@ -52,4 +52,67 @@ export default function analogClock({sleepStart = 22, sleepEnd = 5}) {
 
         return () => clearInterval(t);
     }, []);
+
+    const h = now.getHours();
+    const m = now.getMinutes();
+    const s = now.getSeconds();
+
+    const hAngle = (360 / 12) * (h % 12 + m / 60);
+    const mAngle = (360 / 60) * m;
+    const sAngle = (360 / 60) * s;
+
+    let angleStart = (sleepStart % 12) * 30;
+    let angleEnd = (sleepEnd % 12) * 30;
+
+    if(sleepEnd <= sleepStart) {
+        angleEnd += 360;
+    }
+
+    return (
+        <View>
+            <Svg height = {clockSize} width = {clockSize}>
+                <Circle
+                    cx = {clockCenterX}
+                    cy = {clockCenterY}
+                    r = {clockRadius}
+                    stroke = 'white'
+                    strokeWidth = {4}
+                    fill = 'none'
+                />
+
+                <Path
+                    d = {arc(angleStart, angleEnd)}
+                    stroke = 'cyan'
+                    strokeWidth = {8}
+                    fill = 'none'
+                    strokeLinecap = 'round'
+                />
+
+                <Line
+                    {...handLine(hAngle, clockRadius * 0.5)}
+                    stroke = 'white'
+                    strokeWidth = {5}
+                />
+
+                <Line
+                    {...handLine(mAngle, clockRadius * 0.7)}
+                    stroke = 'white'
+                    strokeWidth = {3}
+                />
+
+                <Line
+                    {...handLine(sAngle, clockRadius * 0.9)}
+                    stroke = 'red'
+                    strokeWidth = {1}
+                />
+
+                <Circle
+                    cx = {clockCenterX}
+                    cy = {clockCenterY}
+                    r = {4}
+                    fill = 'white'
+                />
+            </Svg>
+        </View>
+    );
 }
