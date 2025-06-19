@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Button, TouchableOpacity, Image, ImageBackgroun
 import { UserContext } from '../UserContext'
 import clockImage from '../assets/images/clock.jpg';
 import background from '../assets/backgrounds/sleepjournalbackground.png';
-import analogClock from './SleepClock';
+import AnalogClock from './SleepClock';
 
 function HomeScreen({ navigation }) {
     const {user} = useContext(UserContext);
@@ -52,7 +52,7 @@ function HomeScreen({ navigation }) {
         </View>
 
         <View style={styles.clockContainer}>
-            <analogClock
+            <AnalogClock
                 sleepStart = {22}
                 sleepEnd = {5}
             />

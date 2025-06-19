@@ -42,7 +42,7 @@ function handLine(angle, length) {
     }
 }
 
-export default function analogClock({sleepStart = 22, sleepEnd = 5}) {
+export default function AnalogClock({sleepStart = 22, sleepEnd = 5}) {
     const [now, setNow] = useState(new Date());
 
     useEffect(() => {
