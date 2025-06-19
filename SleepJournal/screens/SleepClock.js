@@ -164,7 +164,7 @@ export default function AnalogClock({sleepStart = 22, sleepEnd = 6}) {
                     cx = {clockCenterX}
                     cy = {clockCenterY}
                     r = {4}
-                    fill = 'white'
+                    fill = 'gray'
                 />
             </Svg>
         </View>
