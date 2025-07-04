@@ -1,13 +1,25 @@
 // src/screens/HomeScreen.js (or just screens/HomeScreen.js)
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import { View, Text, StyleSheet, Button, TouchableOpacity, Image, ImageBackground} from 'react-native';
 import { UserContext } from '../UserContext'
 import clockImage from '../assets/images/clock.jpg';
 import background from '../assets/backgrounds/sleepjournalbackground.png';
 import AnalogClock from './SleepClock';
+import { initHealthKit, getSleepSamples } from '../ios/utils/AppleHealth';
 
 function HomeScreen({ navigation }) {
     const {user} = useContext(UserContext);
+    const [sleep, setSleep] = useState(null);
+
+    useEffect(function () {
+        async function getSleep() {
+            try {
+
+            } catch (error) {
+
+            }
+        }
+    });
 
     function DateDisplay() {
         const [currentDate] = useState(new Date());
