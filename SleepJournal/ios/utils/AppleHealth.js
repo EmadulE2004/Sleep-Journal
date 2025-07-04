@@ -8,12 +8,32 @@ const permission = {
 
 export const initHealthKit = () => {
     return new Promise((resolve, reject) => {
-        AppleHealthKit.initHealthKit(permission, (err) => {
-            if(err) {
-                return reject (err);
+        AppleHealthKit.initHealthKit(permission, (error) => {
+            if(error) {
+                return reject (error);
             }
             resolve();
         });
     });
 }
 
+export const getSleepSamples = () => {
+    return new Promise((resolve, reject) => {
+        const now = new Date();
+        const year = new Date();
+
+        year.setFullYear(now.getFullYear() - 1);
+
+        const option = {
+            startDate: year.toISOString,
+            endDate: now.toISOString
+        }
+    });
+}
+
+AppleHealthKit.getSleepSamples(option, (error, result) => {
+    if(error) {
+        return reject (error);
+    }
+    return (result);
+})
