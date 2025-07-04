@@ -25,15 +25,15 @@ export const getSleepSamples = () => {
         year.setFullYear(now.getFullYear() - 1);
 
         const option = {
-            startDate: year.toISOString,
-            endDate: now.toISOString
+            startDate: year.toISOString(),
+            endDate: now.toISOString()
         }
+
+        AppleHealthKit.getSleepSamples(option, (error, result) => {
+            if(error) {
+                return reject (error);
+            }
+            resolve(result);
+        });
     });
 }
-
-AppleHealthKit.getSleepSamples(option, (error, result) => {
-    if(error) {
-        return reject (error);
-    }
-    return (result);
-})

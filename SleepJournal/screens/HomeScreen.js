@@ -5,7 +5,7 @@ import { UserContext } from '../UserContext'
 import clockImage from '../assets/images/clock.jpg';
 import background from '../assets/backgrounds/sleepjournalbackground.png';
 import AnalogClock from './SleepClock';
-import { initHealthKit, getSleepSamples } from '../ios/utils/AppleHealth';
+import { initHealthKit, getSleepSamples } from './utils/AppleHealth';
 
 function HomeScreen({ navigation }) {
     const {user} = useContext(UserContext);
@@ -14,12 +14,27 @@ function HomeScreen({ navigation }) {
     useEffect(function () {
         async function getSleep() {
             try {
+                await initHealthKit();
+                const data = await getSleepSamples();
 
+                if(data.length > 0) {
+                    const l = data[data.length - 1];
+                    const s = new Date(l.startDate);
+                    const e = new Date(l.endDate);
+                    const d = ((e - s) / (1000 * 60 * 60)).toFixed(1);
+
+                    setSleep({
+                        duration: d,
+                        start: s.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                        end: e.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                    });
+                }
             } catch (error) {
-
+                console.log("Cannot fetch sleep data");
             }
         }
-    });
+        getSleep();
+    }, []);
 
     function DateDisplay() {
         const [currentDate] = useState(new Date());
