@@ -85,6 +85,17 @@ function HomeScreen({ navigation }) {
             />
         </View>
 
+        {sleep && (
+            <View style = {{marginTop: 20, alignItems: 'center'}}>
+                <Text style = {{color: 'white', fontsize: 18}}>
+                    Last Sleep: {sleep.d} hours
+                </Text>
+                <Text style = {{color: 'white', fontSize: 18}}>
+                    {sleep.s} - {sleep.e}
+                </Text>
+            </View>
+        )}
+
         <View style={styles.navBar}>
             <TouchableOpacity style={styles.navIcon}>
                 <Image source={require('../assets/icons/home.png')} style={styles.icon}/>
