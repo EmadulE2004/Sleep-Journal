@@ -13,11 +13,7 @@ const Journal = ({ navigation }) => {
 
   // Filter entries for the selected date
   const filteredEntries = entries.filter(
-    entry => {
-      // Ensure both dates are in 'YYYY-MM-DD' format for comparison
-      const entryDate = new Date(entry.date).toLocaleDateString('en-CA');
-      return entryDate === selectedDate;
-    }
+  entry => entry.date === selectedDate
   );
 
   //Display today's date
@@ -98,7 +94,7 @@ const Journal = ({ navigation }) => {
 
       <TouchableOpacity 
         style={styles.addButton}
-        onPress={() => navigation.navigate('NewEntry')}
+        onPress={() => navigation.navigate('NewEntry', { date: selectedDate })}
       >
         <Image source={require('../assets/icons/journalAddButton.png')} style={{ width: 30, height: 30 }}/>
       </TouchableOpacity>
@@ -181,8 +177,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 95,  
     right: 25,
-    width: 60,   
-    height: 60,  
+    width: 60,
+    height: 60,
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 10,  

@@ -5,10 +5,10 @@ export const JournalContext = createContext();
 export const JournalProvider = ({ children }) => {
   const [entries, setEntries] = useState([]);
 
-  const addEntry = (entryText) => {
+  const addEntry = (entryText, date) => {
     const entry = {
       text: entryText,
-      date: new Date().toLocaleDateString(),
+      date: date || new Date().toISOString().slice(0, 10),
     };
     setEntries(prev => [entry, ...prev]);
   };

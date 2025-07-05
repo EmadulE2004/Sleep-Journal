@@ -10,14 +10,14 @@ import {
 } from 'react-native';
 import { JournalContext } from '../JournalContext';
 
-const NewEntry = ({ navigation }) => {
+const NewEntry = ({ navigation, route }) => {
   const [entry, setEntry] = useState('');
   const { addEntry } = useContext(JournalContext);
+  const date = route?.params?.date || new Date().toISOString().slice(0, 10);
 
   const handleSave = () => {
     if (entry.trim()) {
-      console.log('Adding entry:', entry.trim()); // Add this debug log
-      addEntry(entry.trim());
+      addEntry(entry.trim(), date);
     }
     navigation.goBack();
   };
@@ -28,7 +28,7 @@ const NewEntry = ({ navigation }) => {
       style={styles.container}
     >
       <Text style={styles.dateText}>
-        {`Today's date: ${new Date().toLocaleDateString()}`}
+        {`Selected date: ${date}`}
       </Text>
       <TextInput
         style={styles.textInput}
