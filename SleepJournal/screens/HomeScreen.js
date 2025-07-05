@@ -9,7 +9,11 @@ import { initHealthKit, getSleepSamples } from './utils/AppleHealth';
 
 function HomeScreen({ navigation }) {
     const {user} = useContext(UserContext);
-    const [sleep, setSleep] = useState(null);
+    const [sleep, setSleep] = useState({
+        duration: '6.5',
+        start: '11:30 PM',
+        end: '6:00 AM'
+    });
 
     useEffect(function () {
         async function getSleep() {
@@ -28,9 +32,11 @@ function HomeScreen({ navigation }) {
                         start: start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
                         end: end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
                     });
+                } else {
+                    setSleep({ duration: 'null', start: 'null', end: 'null' });
                 }
             } catch (error) {
-                console.log("Cannot fetch sleep data");
+                console.log("Cannot fetch sleep data", error);
             }
         }
         getSleep();
