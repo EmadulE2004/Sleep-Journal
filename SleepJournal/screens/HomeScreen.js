@@ -18,15 +18,15 @@ function HomeScreen({ navigation }) {
                 const data = await getSleepSamples();
 
                 if(data.length > 0) {
-                    const l = data[data.length - 1];
-                    const s = new Date(l.startDate);
-                    const e = new Date(l.endDate);
-                    const d = ((e - s) / (1000 * 60 * 60)).toFixed(1);
+                    const latest = data[data.length - 1];
+                    const start = new Date(latest.startDate);
+                    const end = new Date(latest.endDate);
+                    const dur = ((end - start) / (1000 * 60 * 60)).toFixed(1);
 
                     setSleep({
-                        duration: d,
-                        start: s.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-                        end: e.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                        duration: dur,
+                        start: start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                        end: end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
                     });
                 }
             } catch (error) {
@@ -83,18 +83,18 @@ function HomeScreen({ navigation }) {
                 sleepStart = {22}
                 sleepEnd = {6}
             />
-        </View>
 
-        {sleep && (
+            {sleep && (
             <View style = {{marginTop: 20, alignItems: 'center'}}>
-                <Text style = {{color: 'white', fontsize: 18}}>
-                    Last Sleep: {sleep.d} hours
+                <Text style = {{color: 'white', fontSize: 18}}>
+                    Last Sleep: {sleep.duration} hours
                 </Text>
                 <Text style = {{color: 'white', fontSize: 18}}>
-                    {sleep.s} - {sleep.e}
+                    {sleep.start} - {sleep.end}
                 </Text>
             </View>
         )}
+        </View>
 
         <View style={styles.navBar}>
             <TouchableOpacity style={styles.navIcon}>
