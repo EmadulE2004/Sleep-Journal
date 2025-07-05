@@ -2,7 +2,6 @@
 import React, {useContext, useState, useEffect} from 'react';
 import { View, Text, StyleSheet, Button, TouchableOpacity, Image, ImageBackground} from 'react-native';
 import { UserContext } from '../UserContext'
-import clockImage from '../assets/images/clock.jpg';
 import background from '../assets/backgrounds/sleepjournalbackground.png';
 import AnalogClock from './SleepClock';
 import { initHealthKit, getSleepSamples } from './utils/AppleHealth';
