@@ -8,27 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		212C242B270F4249877DA7DB /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB88FADA29054B61820D63DE /* HealthKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		8A0FA37FE0ED6B2B73E0D856 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B7D7E5E1F4CBB24A9357D0 /* ExpoModulesProvider.swift */; };
+		63B2B98001214942A43946DB /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F02BFECF3C4BB51C0FE39E1 /* ExpoModulesProvider.swift */; };
+		8C9E1126213F5E9F46595D9C /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = DCB54EB28D092549BAC1A730 /* PrivacyInfo.xcprivacy */; };
+		BAFA30CE2F2E4FEF8361E552 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88D826A177914F5CB1305F40 /* HealthKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
-		DD014AA403FD8F18C19DCD92 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B3001057C5BB35326CCAD463 /* PrivacyInfo.xcprivacy */; };
+		C15617C04A73037519EE4D6D /* libPods-SleepJournal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73CB2F45BB97FBEC90FBF3CB /* libPods-SleepJournal.a */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
-		F5B16EB1BB50C5430BE25AFC /* libPods-SleepJournal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D91DDC0CF29B65D91C68E25E /* libPods-SleepJournal.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		13B07F961A680F5B00A75B9A /* SleepJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SleepJournal/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SleepJournal/Info.plist; sourceTree = "<group>"; };
-		34B7D7E5E1F4CBB24A9357D0 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-SleepJournal/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		9BB52BE274B8F36A7D9D5029 /* Pods-SleepJournal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepJournal.release.xcconfig"; path = "Target Support Files/Pods-SleepJournal/Pods-SleepJournal.release.xcconfig"; sourceTree = "<group>"; };
+		1F02BFECF3C4BB51C0FE39E1 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-SleepJournal/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		59BB2496E1FB4E06637F51C5 /* Pods-SleepJournal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepJournal.release.xcconfig"; path = "Target Support Files/Pods-SleepJournal/Pods-SleepJournal.release.xcconfig"; sourceTree = "<group>"; };
+		73CB2F45BB97FBEC90FBF3CB /* libPods-SleepJournal.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SleepJournal.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		88D826A177914F5CB1305F40 /* HealthKit.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = SleepJournal/SplashScreen.storyboard; sourceTree = "<group>"; };
-		B3001057C5BB35326CCAD463 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = SleepJournal/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		BC00876BE02942C6C3294AD9 /* Pods-SleepJournal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepJournal.debug.xcconfig"; path = "Target Support Files/Pods-SleepJournal/Pods-SleepJournal.debug.xcconfig"; sourceTree = "<group>"; };
-		CB88FADA29054B61820D63DE /* HealthKit.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		D91DDC0CF29B65D91C68E25E /* libPods-SleepJournal.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SleepJournal.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D956198885B929488EC31087 /* Pods-SleepJournal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepJournal.debug.xcconfig"; path = "Target Support Files/Pods-SleepJournal/Pods-SleepJournal.debug.xcconfig"; sourceTree = "<group>"; };
+		DCB54EB28D092549BAC1A730 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = SleepJournal/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = SleepJournal/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* SleepJournal-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SleepJournal-Bridging-Header.h"; path = "SleepJournal/SleepJournal-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -39,22 +39,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				212C242B270F4249877DA7DB /* HealthKit.framework in Frameworks */,
-				F5B16EB1BB50C5430BE25AFC /* libPods-SleepJournal.a in Frameworks */,
+				BAFA30CE2F2E4FEF8361E552 /* HealthKit.framework in Frameworks */,
+				C15617C04A73037519EE4D6D /* libPods-SleepJournal.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		11576C13722D938840059CE7 /* ExpoModulesProviders */ = {
-			isa = PBXGroup;
-			children = (
-				B109695C74588338CF9549AD /* SleepJournal */,
-			);
-			name = ExpoModulesProviders;
-			sourceTree = "<group>";
-		};
 		13B07FAE1A68108700A75B9A /* SleepJournal */ = {
 			isa = PBXGroup;
 			children = (
@@ -64,7 +56,7 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				B3001057C5BB35326CCAD463 /* PrivacyInfo.xcprivacy */,
+				DCB54EB28D092549BAC1A730 /* PrivacyInfo.xcprivacy */,
 			);
 			name = SleepJournal;
 			sourceTree = "<group>";
@@ -73,10 +65,26 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				CB88FADA29054B61820D63DE /* HealthKit.framework */,
-				D91DDC0CF29B65D91C68E25E /* libPods-SleepJournal.a */,
+				88D826A177914F5CB1305F40 /* HealthKit.framework */,
+				73CB2F45BB97FBEC90FBF3CB /* libPods-SleepJournal.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4D7EF5999A7DA6958479E34C /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				6287677187CED44772D03BD1 /* SleepJournal */,
+			);
+			name = ExpoModulesProviders;
+			sourceTree = "<group>";
+		};
+		6287677187CED44772D03BD1 /* SleepJournal */ = {
+			isa = PBXGroup;
+			children = (
+				1F02BFECF3C4BB51C0FE39E1 /* ExpoModulesProvider.swift */,
+			);
+			name = SleepJournal;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -93,8 +101,8 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				CA47D5863E28A2DE2F481017 /* Pods */,
-				11576C13722D938840059CE7 /* ExpoModulesProviders */,
+				4D7EF5999A7DA6958479E34C /* ExpoModulesProviders */,
+				D467D61FECB2A3833641BFD3 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -109,14 +117,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B109695C74588338CF9549AD /* SleepJournal */ = {
-			isa = PBXGroup;
-			children = (
-				34B7D7E5E1F4CBB24A9357D0 /* ExpoModulesProvider.swift */,
-			);
-			name = SleepJournal;
-			sourceTree = "<group>";
-		};
 		BB2F792B24A3F905000567C9 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,11 +126,11 @@
 			path = SleepJournal/Supporting;
 			sourceTree = "<group>";
 		};
-		CA47D5863E28A2DE2F481017 /* Pods */ = {
+		D467D61FECB2A3833641BFD3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				BC00876BE02942C6C3294AD9 /* Pods-SleepJournal.debug.xcconfig */,
-				9BB52BE274B8F36A7D9D5029 /* Pods-SleepJournal.release.xcconfig */,
+				D956198885B929488EC31087 /* Pods-SleepJournal.debug.xcconfig */,
+				59BB2496E1FB4E06637F51C5 /* Pods-SleepJournal.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
@@ -143,14 +143,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "SleepJournal" */;
 			buildPhases = (
-				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				9E4027EC1D728E335BB7C62F /* [Expo] Configure project */,
+				97377400E406ABFC6CD222C1 /* [CP] Check Pods Manifest.lock */,
+				9D4B763A08D9BCE60ABC2C2A /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				DE3332008DA37A2D34C30D9D /* [CP] Embed Pods Frameworks */,
+				5547389A1A48B35E3D7A8644 /* [CP] Embed Pods Frameworks */,
+				EC2B5B58178A1B102529069A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -205,7 +205,7 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				DD014AA403FD8F18C19DCD92 /* PrivacyInfo.xcprivacy in Resources */,
+				8C9E1126213F5E9F46595D9C /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,7 +227,25 @@
 			shellPath = /bin/sh;
 			shellScript = "if [[ -f \"$PODS_ROOT/../.xcode.env\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env\"\nfi\nif [[ -f \"$PODS_ROOT/../.xcode.env.local\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.local\"\nfi\n\n# The project root by default is one level up from the ios directory\nexport PROJECT_ROOT=\"$PROJECT_DIR\"/..\n\nif [[ \"$CONFIGURATION\" = *Debug* ]]; then\n  export SKIP_BUNDLING=1\nfi\nif [[ -z \"$ENTRY_FILE\" ]]; then\n  # Set the entry JS file using the bundler's entry resolution.\n  export ENTRY_FILE=\"$(\"$NODE_BINARY\" -e \"require('expo/scripts/resolveAppEntry')\" \"$PROJECT_ROOT\" ios absolute | tail -n 1)\"\nfi\n\nif [[ -z \"$CLI_PATH\" ]]; then\n  # Use Expo CLI\n  export CLI_PATH=\"$(\"$NODE_BINARY\" --print \"require.resolve('@expo/cli', { paths: [require.resolve('expo/package.json')] })\")\"\nfi\nif [[ -z \"$BUNDLE_COMMAND\" ]]; then\n  # Default Expo CLI command for bundling\n  export BUNDLE_COMMAND=\"export:embed\"\nfi\n\n# Source .xcode.env.updates if it exists to allow\n# SKIP_BUNDLING to be unset if needed\nif [[ -f \"$PODS_ROOT/../.xcode.env.updates\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.updates\"\nfi\n# Source local changes to allow overrides\n# if needed\nif [[ -f \"$PODS_ROOT/../.xcode.env.local\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.local\"\nfi\n\n`\"$NODE_BINARY\" --print \"require('path').dirname(require.resolve('react-native/package.json')) + '/scripts/react-native-xcode.sh'\"`\n\n";
 		};
-		08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */ = {
+		5547389A1A48B35E3D7A8644 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SleepJournal/Pods-SleepJournal-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SleepJournal/Pods-SleepJournal-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		97377400E406ABFC6CD222C1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -249,7 +267,26 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */ = {
+		9D4B763A08D9BCE60ABC2C2A /* [Expo] Configure project */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[Expo] Configure project";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-SleepJournal/expo-configure-project.sh\"\n";
+		};
+		EC2B5B58178A1B102529069A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -287,43 +324,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SleepJournal/Pods-SleepJournal-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9E4027EC1D728E335BB7C62F /* [Expo] Configure project */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[Expo] Configure project";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-SleepJournal/expo-configure-project.sh\"\n";
-		};
-		DE3332008DA37A2D34C30D9D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SleepJournal/Pods-SleepJournal-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SleepJournal/Pods-SleepJournal-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -332,7 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				8A0FA37FE0ED6B2B73E0D856 /* ExpoModulesProvider.swift in Sources */,
+				63B2B98001214942A43946DB /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,7 +341,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC00876BE02942C6C3294AD9 /* Pods-SleepJournal.debug.xcconfig */;
+			baseConfigurationReference = D956198885B929488EC31087 /* Pods-SleepJournal.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -377,7 +377,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9BB52BE274B8F36A7D9D5029 /* Pods-SleepJournal.release.xcconfig */;
+			baseConfigurationReference = 59BB2496E1FB4E06637F51C5 /* Pods-SleepJournal.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
