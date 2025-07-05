@@ -1,4 +1,4 @@
-import AppleHealthKit from 'react-native-health';
+import AppleHealthKit from 'rn-apple-healthkit';
 
 const permission = {
     permission: {

@@ -6,6 +6,15 @@ import background from '../assets/backgrounds/sleepjournalbackground.png';
 import AnalogClock from './SleepClock';
 import { initHealthKit, getSleepSamples } from './utils/AppleHealth';
 
+function timeStringToHour(timeStr) {
+    if (!timeStr || typeof timeStr !== 'string') return 0;
+    const [time, modifier] = timeStr.split(' ');
+    let [hours, minutes] = time.split(':').map(Number);
+    if (modifier === 'PM' && hours !== 12) hours += 12;
+    if (modifier === 'AM' && hours === 12) hours = 0;
+    return hours + minutes / 60;
+}
+
 function HomeScreen({ navigation }) {
     const {user} = useContext(UserContext);
     const [sleep, setSleep] = useState({
@@ -85,8 +94,8 @@ function HomeScreen({ navigation }) {
 
         <View style={styles.clockContainer}>
             <AnalogClock
-                sleepStart = {22}
-                sleepEnd = {6}
+                sleepStart={timeStringToHour(sleep.start)}
+                sleepEnd={timeStringToHour(sleep.end)}
             />
 
             {sleep && (
