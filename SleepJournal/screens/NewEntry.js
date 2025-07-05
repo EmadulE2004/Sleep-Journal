@@ -27,6 +27,9 @@ const NewEntry = ({ navigation }) => {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}
     >
+      <Text style={styles.dateText}>
+        {`Today's date: ${new Date().toLocaleDateString()}`}
+      </Text>
       <TextInput
         style={styles.textInput}
         multiline
@@ -72,6 +75,12 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 17,
     fontWeight: '600'
+  },
+  dateText: {
+    fontSize: 18,
+    color: '#333',
+    marginBottom: 15,
+    alignSelf: 'center',
   }
 });
 

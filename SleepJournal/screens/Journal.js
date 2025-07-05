@@ -1,12 +1,36 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { View, TouchableOpacity, StyleSheet, Text, Image, ScrollView } from 'react-native';
 import { UserContext } from '../UserContext';
-import { JournalContext } from '../JournalContext'; // <-- Add this
-import PencilIcon from '../assets/icons/journalAddButton.png';
+import { JournalContext } from '../JournalContext';
+import { Calendar } from 'react-native-calendars'; // <-- Add this import
 
 const Journal = ({ navigation }) => {
   const { user } = useContext(UserContext);
-  const { entries } = useContext(JournalContext); // <-- Add this
+  const { entries, removeEntry } = useContext(JournalContext); 
+
+  // Add selectedDate state
+  const [selectedDate, setSelectedDate] = useState(new Date().toLocaleDateString('en-CA'));
+
+  // Filter entries for the selected date
+  const filteredEntries = entries.filter(
+    entry => {
+      // Ensure both dates are in 'YYYY-MM-DD' format for comparison
+      const entryDate = new Date(entry.date).toLocaleDateString('en-CA');
+      return entryDate === selectedDate;
+    }
+  );
+
+  //Display today's date
+      function DateDisplay() {
+          const [currentDate] = useState(new Date());
+          return (
+              <View>
+                  <Text style={styles.dateText}>
+                      Today's date: {currentDate.toLocaleDateString()}
+                  </Text>
+              </View>
+          );
+      }
 
   function timeGreeting(user) {
         const time = new Date().getHours();
@@ -37,18 +61,35 @@ const Journal = ({ navigation }) => {
         </Text>
         <Text style={styles.title}>My Notes</Text>
       </View>
+
+      {/* Calendar at the top */}
+      <Calendar
+        style={styles.calendar}
+        onDayPress={day => setSelectedDate(day.dateString)}
+        markedDates={{
+          [selectedDate]: {selected: true, selectedColor: '#007AFF'}
+        }}
+      />
+
       <View style={{ flex: 1 }}>
-        {entries.length === 0 ? (
+        {filteredEntries.length === 0 ? (
           <View style={styles.centered}>
             <Text style={styles.placeholderText}>
-              No journal entries yet.
+              No journal entries for this day.
             </Text>
           </View>
         ) : (
           <ScrollView contentContainerStyle={styles.entriesContainer}>
-            {entries.map((entry, idx) => (
+            {filteredEntries.map((entry, idx) => (
               <View key={idx} style={styles.entryCard}>
-                <Text style={styles.entryText}>{entry}</Text>
+                <Text style={styles.entryDate}>{entry.date}</Text>
+                <Text style={styles.entryText}>{entry.text}</Text>
+                <TouchableOpacity
+                  style={styles.removeButton}
+                  onPress={() => removeEntry(idx)}
+                >
+                  <Text style={styles.removeButtonText}>Remove</Text>
+                </TouchableOpacity>
               </View>
             ))}
           </ScrollView>
@@ -84,10 +125,19 @@ const Journal = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  dateText: {
+    fontFamily: 'Arial',
+    fontSize: 20,
+    right: -5,
+    marginTop: 10,
+    color: 'black',
+  },
+
   container: {
     flex: 1,
     backgroundColor: 'white',
   },
+  
   header: {
     padding: 15,
     backgroundColor: '#f8f8f8',
@@ -185,9 +235,32 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
+  entryDate: {
+    fontSize: 13,
+    color: '#888',
+    marginBottom: 5,
+  },
   entryText: {
     fontSize: 16,
     color: '#333',
+  },
+  removeButton: {
+    marginTop: 10,
+    alignSelf: 'flex-end',
+    backgroundColor: '#ff4d4d',
+    paddingVertical: 6,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+  },
+  removeButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 14,
+  },
+  calendar: {
+    margin: 10,
+    borderRadius: 10,
+    elevation: 2,
   },
 });
 
