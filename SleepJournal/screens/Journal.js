@@ -3,10 +3,19 @@ import { View, TouchableOpacity, StyleSheet, Text, Image, ScrollView } from 'rea
 import { UserContext } from '../UserContext';
 import { JournalContext } from '../JournalContext';
 import { Calendar } from 'react-native-calendars'; // <-- Add this import
+import MoodSelection from './MoodSelection';
 
 const Journal = ({ navigation }) => {
   const { user } = useContext(UserContext);
   const { entries, removeEntry } = useContext(JournalContext); 
+
+  const [mood, setMood] = useState(true);
+  const [select, setSelect] = useState(null);
+
+  const moodSelect = (mood) => {
+    setSelect(mood);
+    setMood(false);
+  }
 
   // Add selectedDate state
   const [selectedDate, setSelectedDate] = useState(new Date().toLocaleDateString('en-CA'));
@@ -116,6 +125,12 @@ const Journal = ({ navigation }) => {
           <Image source={require('../assets/icons/user.png')} style={styles.icon}/>
         </TouchableOpacity>
       </View>
+
+      <MoodSelection
+        visible = {mood}
+        select = {moodSelect}
+        close = {() => setMood(false)}
+      />
     </View>
   );
 };
