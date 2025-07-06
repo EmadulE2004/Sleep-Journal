@@ -20,21 +20,21 @@ export default function MoodSelection({visible, select, close}) {
             <View style={styles.overlay}>
                 <View style={styles.box}>
                     <Text style={styles.title}>
-                         How are you feeling?
+                        How are you feeling?
                     </Text>
                     <View style={styles.row}>
                         {mood.map((moods, idx) => (
-                        <TouchableOpacity
-                            key={idx}
-                            style={styles.moodItem}
-                            onPress={() => select(moods.name)}
-                        >
-                            <Image source={moods.image} style={styles.moodImage}/>
-                            <Text style={styles.label}>
-                                {moods.name}
-                            </Text>
-                        </TouchableOpacity>
-                        ))}
+                            <TouchableOpacity
+                                key = {idx}
+                                style = {styles.moodItem}
+                                onPress={() => select(moods.name)}
+                            >
+                                <Image source={moods.image} style={styles.moodImage}/>
+                                <Text style={styles.label}>
+                                    {moods.name}
+                                </Text>
+                            </TouchableOpacity>
+                        ))};
                     </View>
                 </View>
             </View>
