@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     },
 
     box: {
-        backgroundColor: 'white',
+        backgroundColor: '#f0f0f0',
         borderRadius: 20,
         padding: 25,
         width: '85%',
@@ -74,7 +74,8 @@ const styles = StyleSheet.create({
 
     moodItem: {
         alignItems: 'center',
-        margin: 10
+        margin: 10,
+        width: 80
     },
 
     moodImage: {

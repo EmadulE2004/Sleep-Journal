@@ -64,6 +64,14 @@ const Journal = ({ navigation }) => {
         <Text style={styles.greet}>
           {timeGreeting(user)}
         </Text>
+
+        <TouchableOpacity 
+          style={styles.addButton}
+          onPress={() => navigation.navigate('NewEntry', { date: selectedDate })}
+        >
+          <Image source={require('../assets/icons/journalAddButton.png')} style={{ width: 30, height: 30 }}/>
+        </TouchableOpacity>
+
         <Text style={styles.title}>My Notes</Text>
       </View>
 
@@ -100,13 +108,6 @@ const Journal = ({ navigation }) => {
           </ScrollView>
         )}
       </View>
-
-      <TouchableOpacity 
-        style={styles.addButton}
-        onPress={() => navigation.navigate('NewEntry', { date: selectedDate })}
-      >
-        <Image source={require('../assets/icons/journalAddButton.png')} style={{ width: 30, height: 30 }}/>
-      </TouchableOpacity>
 
       <View style={styles.navBar}>
         <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.navIcon}>
@@ -150,24 +151,26 @@ const styles = StyleSheet.create({
   },
   
   header: {
-    padding: 15,
-    backgroundColor: '#f8f8f8',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
+    marginTop: 70,
+    paddingHorizontal: 20,
+    paddingBottom: 10,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   greet: {
     fontSize: 18,
-    lineHeight: 20,
     fontWeight: 'bold',
-    marginTop: 70,
-    marginBottom: -10,
     color: '#333',
+    width: '70%',
   },
   title: {
-    fontSize: 35,
-    fontWeight: 'sans-serif',
-    marginTop: 15,
+    fontSize: 32,
+    fontWeight: 'bold',
     color: '#333',
+    marginTop: 10,
+    width: '100%',
   },
   centered: {
     flex: 10,
@@ -189,15 +192,8 @@ const styles = StyleSheet.create({
     paddingVertical: 30,
   },
   addButton: {
-    position: 'absolute',
-    bottom: 95,  
-    right: 25,
-    width: 60,
-    height: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 10,  
-    elevation: 5,
+    padding: 6,
+    marginRight: 5
   },
   navBar: {
     position: 'absolute',
