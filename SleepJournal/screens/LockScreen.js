@@ -1,8 +1,9 @@
 // LockScreen.js
 
 import React, { useState, useContext } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, ImageBackground } from 'react-native'; // Add ImageBackground
 import { UserContext } from '../UserContext';
+import { BlurView } from '@react-native-community/blur';
 
 function LockScreen({ navigation }) {
   const [Email, setEmail] = useState('');
@@ -31,57 +32,76 @@ function LockScreen({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}> Sleep Journal</Text>
-      <View style={styles.loginBox}>
-        <TextInput
-          style={styles.input}
-          placeholder="Email"
-          placeholderTextColor={'black'}
-          value={Email}
-          onChangeText={setEmail}
-          autoCapitalize="none"
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Username"
-          placeholderTextColor={'black'}
-          value={username}
-          onChangeText={setUsername}
-          autoCapitalize="none"
-        />
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <TextInput
-            style={[styles.input, { flex: 1, marginBottom: 0 }]}
-            placeholder="Password"
-            placeholderTextColor={'black'}
-            value={password}
-            onChangeText={text => setPassword(text.slice(0, 8))}
-            secureTextEntry={!showPassword}
-            maxLength={8}
+    <ImageBackground
+      source={require('../assets/backgrounds/SleepBack.jpg')}
+      style={styles.background}
+      resizeMode="cover"
+    >
+      <View style={styles.container}>
+        <Text style={styles.title}> Sleep Journal</Text>
+        <View style={styles.frosted}>
+          <BlurView
+            style={StyleSheet.absoluteFill}
+            blurType="light"
+            blurAmount={15}
+            reducedTransparencyFallbackColor="white"
           />
-          <TouchableOpacity
-            onPress={() => setShowPassword(!showPassword)}
-            style={{ marginLeft: 10, padding: 5 }}
-          >
-            <Text style={{ color: 'blue', fontWeight: 'bold' }}>
-              {showPassword ? 'Hide' : 'Show'}
-            </Text>
-          </TouchableOpacity>
+          <View style={styles.loginBox}>
+            <TextInput
+              style={styles.input}
+              placeholder="Email"
+              placeholderTextColor={'black'}
+              value={Email}
+              onChangeText={setEmail}
+              autoCapitalize="none"
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Username"
+              placeholderTextColor={'black'}
+              value={username}
+              onChangeText={setUsername}
+              autoCapitalize="none"
+            />
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <TextInput
+                style={[styles.input, { flex: 1, marginBottom: 0 }]}
+                placeholder="Password"
+                placeholderTextColor={'black'}
+                value={password}
+                onChangeText={text => setPassword(text.slice(0, 8))}
+                secureTextEntry={!showPassword}
+                maxLength={8}
+              />
+              <TouchableOpacity
+                onPress={() => setShowPassword(!showPassword)}
+                style={{ marginLeft: 10, padding: 5 }}
+              >
+                <Text style={{ color: 'blue', fontWeight: 'bold' }}>
+                  {showPassword ? 'Hide' : 'Show'}
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity style={styles.button} onPress={handleLogin}>
+              <Text style={styles.buttonText}>Login</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        <TouchableOpacity style={styles.button} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
       </View>
-    </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
   loginBox: {
     width: '100%',
     maxWidth: 300,
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(255,255,255,0.7)', // <-- Make background semi-transparent
     borderRadius: 20,
     padding: 20,
     shadowColor: 'black',
@@ -94,7 +114,7 @@ const styles = StyleSheet.create({
     flex: 1, 
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#233C67',
+    backgroundColor: 'rgba(35,60,103,0.7)', // Optional: semi-transparent overlay
     padding: 20,
   },
   title: {
@@ -128,6 +148,14 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  frosted: {
+    width: '100%',
+    maxWidth: 300,
+    borderRadius: 20,
+    overflow: 'hidden',
+    marginBottom: 20,
+    alignSelf: 'center',
   },
 });
 
