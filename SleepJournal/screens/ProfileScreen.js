@@ -45,7 +45,7 @@ function ProfileScreen({ navigation }) {
   const handleLogout = () => {
     Alert.alert("Logout", "Are you sure you want to logout?", [
       {text: "Cancel", style: "cancel"},
-      {text: "Logout", style: "destructive", onPress = () => {navigation.replace('Lock')}}
+      {text: "Logout", style: "destructive", onPress: () => {navigation.replace('Lock')}}
     ]);
   };
 
@@ -104,8 +104,16 @@ function ProfileScreen({ navigation }) {
 
         <View style = {styles.buttonContainer}>
           <Button
+            title = "Change Password"
+            onPress = {() => setPass(true)}
+            color="#6f42c1"
+          />
+        </View>
+
+        <View style = {styles.buttonContainer}>
+          <Button
             title = "Logout"
-            onPress = {() => navigation.replace('Lock')}
+            onPress = {handleLogout}
           />
         </View>
       </View>
