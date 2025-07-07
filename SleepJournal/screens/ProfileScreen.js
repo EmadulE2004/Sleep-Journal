@@ -202,6 +202,42 @@ const styles = StyleSheet.create({
   buttonContainer: {
     marginTop: 20,
   },
+
+  backdrop: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+    justifyContent: 'center',
+    alignItems: 'center'  
+  },
+
+  box: {
+    backgroundColor: 'white',
+    width: '85%',
+    borderRadius: 10,
+    padding: 20,
+    elevation: 10
+  },
+
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 15
+  },
+
+  modalInput: {
+    backgroundColor: '#f1f3f5',
+    padding: 12,
+    borderRadius: 8,
+    marginBottom: 12,
+    fontSize: 16
+  },
+
+  modalRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 10
+  }
 });
 
 export default ProfileScreen;
