@@ -1,6 +1,6 @@
 //ProfileScreen.js
 import React, { useContext, useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Button, ScrollView, TextInput, Alert } from 'react-native';
+import { View, Text, StyleSheet, Button, ScrollView, TextInput, Alert, Modal } from 'react-native';
 import { UserContext } from '../UserContext';
 
 
@@ -10,7 +10,10 @@ function ProfileScreen({ navigation }) {
   const [username, setUsername] = useState(user.username);
   const [userEmail, setUserEmail] = useState(user.email);
   const [userBio, setUserBio] = useState(user.bio);
-  
+
+  const [showPass, setPass] = useState(false);
+  const [currPass, setCurrPass] = useState('');
+  const [newPass, setNewPass] = useState('');
 
   useEffect(() => {
     setUsername(user.username);
@@ -26,6 +29,17 @@ function ProfileScreen({ navigation }) {
       bio: userBio,
     });
     Alert.alert('Success', 'Profile changes saved!');
+  };
+
+  const passChange = () => {
+    if(currPass === newPass) {
+      Alert.alert("Error", "New password must be different from current password!");
+    }
+
+    setPass(false);
+    setCurrPass('');
+    setNewPass('');
+    Alert.alert("Password changed", "Your password has updated.");
   };
 
   return (
