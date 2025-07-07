@@ -19,6 +19,8 @@ function ProfileScreen({ navigation }) {
     setUsername(user.username);
     setUserEmail(user.email);
     setUserBio(user.bio);
+
+    navigation.setOptions({headerBackTitle: 'Home'});
   }, [user]);
 
   const handleSaveChanges = () => {
