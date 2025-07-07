@@ -96,14 +96,6 @@ function ProfileScreen({ navigation }) {
           />
         </View>
 
-        <View style={styles.buttonContainer}>
-          <Button
-            title="Go Back Home"
-            onPress={() => navigation.goBack()} // 
-            color="#6c757d"
-          />
-        </View>
-
         <View style = {styles.buttonContainer}>
           <Button
             title = "Change Password"
