@@ -42,6 +42,13 @@ function ProfileScreen({ navigation }) {
     Alert.alert("Password changed", "Your password has updated.");
   };
 
+  const handleLogout = () => {
+    Alert.alert("Logout", "Are you sure you want to logout?", [
+      {text: "Cancel", style: "cancel"},
+      {text: "Logout", style: "destructive", onPress = () => {navigation.replace('Lock')}}
+    ]);
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
