@@ -117,6 +117,35 @@ function ProfileScreen({ navigation }) {
           />
         </View>
       </View>
+
+      <Modal visible = {showPass} transparent animationType = 'fade'>
+        <View style = {styles.backdrop}>
+          <View style = {styles.box}>
+            <Text style = {styles.modalTitle}>Change Password</Text>
+
+            <TextInput
+              placeholder = "Current Password"
+              secureTextEntry
+              style = {styles.modalInput}
+              value = {currPass}
+              onChangeText = {setCurrPass}
+            />
+
+            <TextInput
+              placeholder = "New Password"
+              secureTextEntry
+              style = {styles.modalInput}
+              value = {newPass}
+              onChangeText ={setNewPass}
+            />
+
+            <View style = {styles.modalRow}>
+              <Button title="Save" color="#007bff" onPress={passChange} />
+              <Button title="Cancel" color="#6c757d" onPress={() => setPass(false)} /> 
+            </View>
+          </View>
+        </View>
+      </Modal>
     </ScrollView>
   );
 }
