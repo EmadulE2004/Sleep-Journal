@@ -8,7 +8,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './screens/HomeScreen';
 import LockScreen from './screens/LockScreen';
 import ProfileScreen from './screens/ProfileScreen';
-import { UserProvider } from './UserContext'; // Add this import
+import Statistics from './screens/Statistics'; 
+import { UserProvider } from './UserContext'; 
 import Journal from './screens/Journal';
 import NewEntry from './screens/NewEntry';
 import { JournalProvider } from './JournalContext';
@@ -56,6 +57,15 @@ export default function App() {
               options = {{
                 title: 'Journal',
                 headerShown: false
+              }}
+            />
+
+            <Stack.Screen
+              name="Statistics"
+              component={Statistics}
+              options={{
+                title: 'Statistics',
+                headerShown: true
               }}
             />
 
