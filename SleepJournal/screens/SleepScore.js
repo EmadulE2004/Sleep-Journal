@@ -2,7 +2,7 @@ import React from "react";
 import {View, Text, StyleSheet} from 'react-native';
 import Svg, {Circle} from "react-native-svg";
 
-export default function SleepScore({score = 90}) {
+export default function SleepScore({score}) {
     const size = 200;
     const sw = 15;
     const r = (size - sw) / 2;
@@ -18,6 +18,18 @@ export default function SleepScore({score = 90}) {
             return "Average";
         } else {
             return "Poor";
+        }
+    }
+
+    const ratingColor = () => {
+        if(score >= 90) {
+            return '#00C9A7';
+        } else if(score >= 70) {
+            return '#4CAF50';
+        } else if(score >= 50) {
+            return '#FFC107';
+        } else {
+            return '#F44336';
         }
     }
 
@@ -38,7 +50,7 @@ export default function SleepScore({score = 90}) {
                         />
 
                         <Circle
-                            stroke = "#00C9A7"
+                            stroke = {ratingColor()}
                             fill = "none"
                             cx = {size / 2}
                             cy = {size / 2}

@@ -63,7 +63,7 @@ export default function Statistics() {
           </View>
         )}
 
-        <SleepScore score={90}/>
+        <SleepScore score={0}/>
         <View style = {styles.placeholderBlock}/>
         <View style = {styles.placeholderBlock}/>
         <View style = {styles.placeholderBlock}/>
