@@ -26,12 +26,12 @@ export default function SleepScore({score = 90}) {
             <Text style = {styles.title}>Sleep Score</Text>
 
             <View style = {styles.wrapper}>
-                <Svg>
+                <Svg width = {size} height = {size}>
                     <Circle
                         stroke = "#e0e0e0"
                         fill = "none"
-                        cx = {s / 2}
-                        cy = {s / 2}
+                        cx = {size / 2}
+                        cy = {size / 2}
                         r = {r}
                         strokeWidth = {sw}
                     />
@@ -39,14 +39,14 @@ export default function SleepScore({score = 90}) {
                     <Circle
                         stroke = "#00C9A7"
                         fill = "none"
-                        cx = {s / 2}
-                        cy = {s / 2}
+                        cx = {size / 2}
+                        cy = {size / 2}
                         r = {r}
                         strokeWidth ={sw}
                         strokeDasharray = {`${p}, ${c}`}
                         strokeLinecap = "round"
                         rotation = "-90"
-                        origin = {`${s / 2}, ${s / 2}`}
+                        origin = {`${size / 2}, ${size / 2}`}
                     />
                 </Svg>
 
@@ -55,11 +55,48 @@ export default function SleepScore({score = 90}) {
                 </View>
             </View>
 
-            <Text style = {styles.feedback}></Text>
+            <Text style = {styles.feedback}>{rating}</Text>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
+    container: {
+    alignItems: 'center',
+    marginBottom: 30,
+  },
 
-})
+  title: {
+    fontSize: 22,
+    fontWeight: '600',
+    color: '#333',
+    marginBottom: 10,
+  },
+
+  wrapper: {
+    position: 'relative',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  center: {
+    position: 'absolute',
+    top: '35%',
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+  },
+
+  bigScore: {
+    fontSize: 44,
+    fontWeight: 'bold',
+    color: '#333',
+  },
+
+  feedback: {
+    marginTop: 15,
+    fontSize: 16,
+    color: '#666',
+    fontStyle: 'italic',
+  }
+});
