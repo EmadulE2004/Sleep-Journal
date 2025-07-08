@@ -8,4 +8,23 @@ export default function SleepScore({score = 90}) {
     const r = (size - sw) / 2;
     const c = 2 * Math.PI * r;
     const p = (score / 100) * c;
+
+    return (
+        <View>
+            <Text></Text>
+
+            <View>
+                <Svg>
+                    <Circle/>
+                    <Circle/>
+                </Svg>
+
+                <View>
+                    <Text></Text>
+                </View>
+            </View>
+
+            <Text></Text>
+        </View>
+    );
 }
