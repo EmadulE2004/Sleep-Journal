@@ -119,7 +119,7 @@ function HomeScreen({ navigation }) {
                 <Image source={require('../assets/icons/journal.png')} style={styles.icon}/>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.navIcon}>
+            <TouchableOpacity onPress = {() => navigation.navigate('Statistics')} style={styles.navIcon}>
                 <Image source={require('../assets/icons/graph.png')} style={styles.icon}/>
             </TouchableOpacity>
 

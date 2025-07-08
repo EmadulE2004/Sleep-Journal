@@ -61,9 +61,9 @@ export default function App() {
             />
 
             <Stack.Screen
-              name="Statistics"
-              component={Statistics}
-              options={{
+              name = "Statistics"
+              component = {Statistics}
+              options = {{
                 title: 'Statistics',
                 headerShown: true
               }}
