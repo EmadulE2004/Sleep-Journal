@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { UserContext } from '../UserContext';
 
 
@@ -55,6 +55,7 @@ export default function Statistics() {
 
   return (
     <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', padding: 20, backgroundColor: 'white' }}>
+      <ScrollView>
       <Text style={{ fontSize: 30, marginRight: 130, fontWeight: 'bold', top: 10 }}>Sleep Analytics</Text>
       
 
@@ -69,7 +70,7 @@ export default function Statistics() {
             </Text>
           </View>
         )}
-
+      </ScrollView>
         <View style={styles.navBar}>
               <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.navIcon}>
                 <Image source={require('../assets/icons/home.png')} style={styles.icon}/>
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: 10
   },
-  
+
   navBar: {
         position: 'absolute',
         bottom: 20,
