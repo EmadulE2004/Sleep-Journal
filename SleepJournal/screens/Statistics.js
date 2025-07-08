@@ -2,13 +2,6 @@ import React, { useContext, useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { UserContext } from '../UserContext';
 
-
-
-
-
-
-
-
 function timeStringToHour(timeStr) {
     if (!timeStr || typeof timeStr !== 'string') return 0;
     const [time, modifier] = timeStr.split(' ');
