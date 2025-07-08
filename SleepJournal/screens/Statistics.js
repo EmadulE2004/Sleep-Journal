@@ -58,8 +58,6 @@ export default function Statistics() {
       <ScrollView>
       <Text style={{ fontSize: 30, marginRight: 130, fontWeight: 'bold', top: 10 }}>Sleep Analytics</Text>
       
-
-
         {sleep && (
           <View style={{marginTop: 20, alignItems: 'center'}}>
             <Text style={{color: 'black', fontSize: 18}}>
@@ -70,6 +68,12 @@ export default function Statistics() {
             </Text>
           </View>
         )}
+
+        <View style = {styles.placeholderBlock}/>
+        <View style = {styles.placeholderBlock}/>
+        <View style = {styles.placeholderBlock}/>
+        <View style = {styles.placeholderBlock}/>
+
       </ScrollView>
         <View style={styles.navBar}>
               <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.navIcon}>
@@ -132,4 +136,13 @@ const styles = StyleSheet.create({
         height: 50,
         resizeMode: 'contain'
     },
+
+    placeholderBlock: {
+      height: 200,
+      width: 390,
+      backgroundColor: '#d9d9d9',
+      borderRadius: 16,
+      marginBottom: 20
+    },
+
 });
