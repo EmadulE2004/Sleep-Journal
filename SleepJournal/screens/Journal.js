@@ -118,8 +118,8 @@ const Journal = ({ navigation }) => {
           <Image source={require('../assets/icons/journal.png')} style={styles.icon}/>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.navIcon}>
-          <Image source={require('../assets/icons/graph.png')} style={styles.icon}/>
+        <TouchableOpacity onPress = {() => navigation.navigate('Statistics')} style={styles.navIcon}>
+            <Image source={require('../assets/icons/graph.png')} style={styles.icon}/>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => navigation.navigate('Profile')} style={styles.navIcon}>
