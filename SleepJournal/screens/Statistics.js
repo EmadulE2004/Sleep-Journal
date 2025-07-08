@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { UserContext } from '../UserContext';
 
 
@@ -69,8 +69,25 @@ export default function Statistics() {
             </Text>
           </View>
         )}
-      </View>
 
+        <View style={styles.navBar}>
+              <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.navIcon}>
+                <Image source={require('../assets/icons/home.png')} style={styles.icon}/>
+              </TouchableOpacity>
+      
+              <TouchableOpacity style={styles.navIcon}>
+                <Image source={require('../assets/icons/journal.png')} style={styles.icon}/>
+              </TouchableOpacity>
+      
+              <TouchableOpacity onPress = {() => navigation.navigate('Statistics')} style={styles.navIcon}>
+                  <Image source={require('../assets/icons/graph.png')} style={styles.icon}/>
+              </TouchableOpacity>
+      
+              <TouchableOpacity onPress={() => navigation.navigate('Profile')} style={styles.navIcon}>
+                <Image source={require('../assets/icons/user.png')} style={styles.icon}/>
+              </TouchableOpacity>
+            </View>
+      </View>
   );
 }
 
@@ -81,5 +98,37 @@ const styles = StyleSheet.create({
     marginTop: 40,
     alignItems: 'center',
     marginVertical: 10
-  }
+  },
+  
+  navBar: {
+        position: 'absolute',
+        bottom: 20,
+        left: 20,
+        right: 20,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        backgroundColor: 'white',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderTopWidth: 0,
+        borderTopColor: 'black',
+        gap: 35,
+        shadowRadius: 4,
+        elevation: 5,
+        shadowColor: 'black',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        borderRadius: 40,
+    },
+
+    navIcon: {
+        alignItems: 'center'
+    },
+
+    icon: {
+        width: 50,
+        height: 50,
+        resizeMode: 'contain'
+    },
 });
