@@ -22,40 +22,42 @@ export default function SleepScore({score = 90}) {
     }
 
     return (
-        <View style = {styles.container}>
-            <Text style = {styles.title}>Sleep Score</Text>
+        <View style = {styles.block}>
+            <View style = {styles.container}>
+                <Text style = {styles.title}>Sleep Score</Text>
 
-            <View style = {styles.wrapper}>
-                <Svg width = {size} height = {size}>
-                    <Circle
-                        stroke = "#e0e0e0"
-                        fill = "none"
-                        cx = {size / 2}
-                        cy = {size / 2}
-                        r = {r}
-                        strokeWidth = {sw}
-                    />
+                <View style = {styles.wrapper}>
+                    <Svg width = {size} height = {size}>
+                        <Circle
+                            stroke = "#e0e0e0"
+                            fill = "none"
+                            cx = {size / 2}
+                            cy = {size / 2}
+                            r = {r}
+                            strokeWidth = {sw}
+                        />
 
-                    <Circle
-                        stroke = "#00C9A7"
-                        fill = "none"
-                        cx = {size / 2}
-                        cy = {size / 2}
-                        r = {r}
-                        strokeWidth ={sw}
-                        strokeDasharray = {`${p}, ${c}`}
-                        strokeLinecap = "round"
-                        rotation = "-90"
-                        origin = {`${size / 2}, ${size / 2}`}
-                    />
-                </Svg>
+                        <Circle
+                            stroke = "#00C9A7"
+                            fill = "none"
+                            cx = {size / 2}
+                            cy = {size / 2}
+                            r = {r}
+                            strokeWidth ={sw}
+                            strokeDasharray = {`${p}, ${c}`}
+                            strokeLinecap = "round"
+                            rotation = "-90"
+                            origin = {`${size / 2}, ${size / 2}`}
+                        />
+                    </Svg>
 
-                <View style = {styles.center}>
-                    <Text style = {styles.bigScore}>{score}</Text>
+                    <View style = {styles.center}>
+                        <Text style = {styles.bigScore}>{score}</Text>
+                    </View>
                 </View>
-            </View>
 
-            <Text style = {styles.feedback}>{rating}</Text>
+                <Text style = {styles.feedback}>{rating()}</Text>
+            </View>
         </View>
     );
 }
@@ -63,7 +65,7 @@ export default function SleepScore({score = 90}) {
 const styles = StyleSheet.create({
     container: {
     alignItems: 'center',
-    marginBottom: 30,
+    marginBottom: 10,
   },
 
   title: {
@@ -98,5 +100,17 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#666',
     fontStyle: 'italic',
+  },
+  
+  block: {
+    height: 300,
+    width: 390,
+    backgroundColor: '#d9d9d9',
+    borderRadius: 16,
+    marginTop: 10,
+    marginBottom: 20,
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    paddingVertical: 20,
   }
 });

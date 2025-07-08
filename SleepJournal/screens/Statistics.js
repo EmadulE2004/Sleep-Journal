@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { UserContext } from '../UserContext';
+import SleepScore from './SleepScore';
 
 function timeStringToHour(timeStr) {
     if (!timeStr || typeof timeStr !== 'string') return 0;
@@ -62,7 +63,7 @@ export default function Statistics() {
           </View>
         )}
 
-        <View style = {styles.placeholderBlock}/>
+        <SleepScore score={90}/>
         <View style = {styles.placeholderBlock}/>
         <View style = {styles.placeholderBlock}/>
         <View style = {styles.placeholderBlock}/>
