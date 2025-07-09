@@ -2,6 +2,8 @@ import React, { useContext, useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { UserContext } from '../UserContext';
 import SleepScore from './SleepScore';
+import ChatBotScreen from './ChatBotScreen'; // (optional, for clarity)
+import { useNavigation } from '@react-navigation/native';
 
 function timeStringToHour(timeStr) {
     if (!timeStr || typeof timeStr !== 'string') return 0;
@@ -13,6 +15,7 @@ function timeStringToHour(timeStr) {
 }
 
 export default function Statistics() {
+  const navigation = useNavigation();
   const {user} = useContext(UserContext);
   const [sleep, setSleep] = useState({
       duration: '6.5',
@@ -64,10 +67,15 @@ export default function Statistics() {
         )}
 
         <SleepScore score={0}/>
-        <View style = {styles.placeholderBlock}/>
-        <View style = {styles.placeholderBlock}/>
-        <View style = {styles.placeholderBlock}/>
 
+        {/* Move the button here, above the placeholder blocks */}
+        <TouchableOpacity onPress={() => navigation.navigate('ChatBot')} style={{marginVertical: 20}}>
+          <Text style={{color: 'blue', fontSize: 18}}>Open Sleep Chatbot</Text>
+        </TouchableOpacity>
+
+        <View style = {styles.placeholderBlock}/>
+        <View style = {styles.placeholderBlock}/>
+        <View style = {styles.placeholderBlock}/>
       </ScrollView>
         <View style={styles.navBar}>
               <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.navIcon}>

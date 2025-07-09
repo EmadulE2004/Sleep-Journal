@@ -13,6 +13,7 @@ import { UserProvider } from './UserContext';
 import Journal from './screens/Journal';
 import NewEntry from './screens/NewEntry';
 import { JournalProvider } from './JournalContext';
+import ChatBotScreen from './screens/ChatBotScreen'; // Add this import
 
 const Stack = createStackNavigator();
 
@@ -79,6 +80,15 @@ export default function App() {
                 }}
               />
             </Stack.Group>
+
+            <Stack.Screen
+              name="ChatBot"
+              component={ChatBotScreen}
+              options={{
+                title: 'Sleep Chatbot',
+                headerShown: true
+              }}
+            />
           </Stack.Navigator>
           <StatusBar style="auto" />
         </NavigationContainer>
