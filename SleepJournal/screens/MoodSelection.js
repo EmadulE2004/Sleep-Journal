@@ -34,7 +34,7 @@ export default function MoodSelection({visible, select, close}) {
                                     {moods.name}
                                 </Text>
                             </TouchableOpacity>
-                        ))};
+                        ))}
                     </View>
                 </View>
             </View>
