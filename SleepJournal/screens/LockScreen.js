@@ -36,11 +36,11 @@ function LockScreen({ navigation }) {
         // Set display name after signup
         await updateProfile(userCredential.user, { displayName });
         setUser({ ...userCredential.user, displayName });
-        Alert.alert('Success', 'Account created!');
+        Alert.alert('Success', 'Account is now active!');
         navigation.navigate('Home');
       }
     } catch (error) {
-      Alert.alert('Authentication Error', error.message);
+      Alert.alert('Uh oh Authentication Error', error.message);
     }
   };
 
@@ -167,7 +167,7 @@ function LockScreen({ navigation }) {
               style={styles.toggleButton}
             >
               <Text style={[styles.toggleButtonText, { color: color.text }]}>
-                {isLogin ? 'Need an account? Sign up' : 'Already have an account? Log in'}
+                {isLogin ? 'New? Sign up NEOW!' : 'have an account? Click me '}
               </Text>
             </TouchableOpacity>
           </Card>
