@@ -27,6 +27,11 @@ export const Colors = {
     tabIconSelected: accentBlue,
     card: '#FFFFFF',
     cardBorder: '#E2E8F0',
+    green: '#4CAF50', // Added green
+    red: '#F44336',   // Added red
+    yellow: '#FFC107', // Added yellow
+    blue: '#2196F3', // Added blue
+    orange: '#FF9800', // Added orange
   },
   dark: {
     text: moonGlow, 
@@ -38,7 +43,12 @@ export const Colors = {
     card: secondaryNavy, 
     cardBorder: '#2D3748', 
     glassBackground: 'rgba(26, 35, 50, 0.8)', 
-    glassBorder: 'rgba(74, 144, 226, 0.2)'
+    glassBorder: 'rgba(74, 144, 226, 0.2)',
+    green: '#4CAF50', // Added green
+    red: '#F44336',   // Added red
+    yellow: '#FFC107', // Added yellow
+    blue: '#2196F3', // Added blue
+    orange: '#FF9800', // Added orange
   },
 };
 

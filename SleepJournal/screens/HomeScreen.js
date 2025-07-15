@@ -4,7 +4,6 @@ import { View, Text, StyleSheet, Button, TouchableOpacity, Image,} from 'react-n
 import { UserContext } from '../UserContext'
 import AnalogClock from './SleepClock';
 import { initHealthKit, getSleepSamples } from './utils/AppleHealth';
-import ScreenBackground from '../components/ScreenBackground';
 import NavBar from '../components/NavBar';
 import Card from '../components/Card';
 import { useTheme } from '../hooks/useTheme';

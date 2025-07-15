@@ -41,8 +41,24 @@ export default function MoodSelection({visible, select, close}) {
                                 style = {styles.moodItem}
                                 onPress = {() => select(moods.name)}
                             >
-                                <Image source = {moods.image} style = {[styles.moodImage, { tintColor: color.tint }]}/>
-                                <Text style = {[styles.label, { colors: color.text }]}>
+                                <Image 
+                                    source = {moods.image} 
+                                    style = {[
+                                        styles.moodImage, 
+                                        { 
+                                            tintColor: moods.name === 'happy' 
+                                                ? color.green 
+                                                : moods.name === 'neutral' 
+                                                    ? color.yellow 
+                                                    : moods.name === 'sad' 
+                                                        ? color.blue 
+                                                        : moods.name === 'tired'
+                                                            ? color.orange
+                                                            : color.red 
+                                        }
+                                    ]}
+                                />
+                                <Text style = {[styles.label, { color: color.text }]}>
                                     {moods.name}
                                 </Text>
                             </TouchableOpacity>
