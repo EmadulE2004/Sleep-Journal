@@ -41,6 +41,9 @@ function LockScreen({ navigation }) {
           <Text style = {[styles.title, {color: color.text}]}>
             Sleep Journal
           </Text>
+          <Text style={[styles.subtitle, { color: color.icon }]}>
+            Your path to a peaceful night.
+          </Text>
 
           <Card variant = "primary" style = {styles.loginBox}>
             <Text style = {[styles.loginTitle, { color: color.text }]}>
@@ -161,6 +164,14 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     letterSpacing: 1,
     marginBottom: 8,
+  },
+
+  subtitle: {
+    fontSize: 18,
+    fontWeight: '400',
+    textAlign: 'center',
+    opacity: 0.8,
+    marginBottom: 8
   },
   
   loginCard: {
