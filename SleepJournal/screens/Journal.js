@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { View, TouchableOpacity, StyleSheet, Text, Image, ScrollView, SafeAreaView } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Text, Image, ScrollView,} from 'react-native';
 import { UserContext } from '../UserContext';
 import { JournalContext } from '../JournalContext';
 import { Calendar } from 'react-native-calendars'; // <-- Add this import
