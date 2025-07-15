@@ -1,10 +1,14 @@
 // src/screens/HomeScreen.js (or just screens/HomeScreen.js)
 import React, {useContext, useState, useEffect} from 'react';
-import { View, Text, StyleSheet, Button, TouchableOpacity, Image, ImageBackground} from 'react-native';
+import { View, Text, StyleSheet, Button, TouchableOpacity, Image,} from 'react-native';
 import { UserContext } from '../UserContext'
-import background from '../assets/backgrounds/sleepjournalbackground.png';
 import AnalogClock from './SleepClock';
 import { initHealthKit, getSleepSamples } from './utils/AppleHealth';
+import ScreenBackground from '../components/ScreenBackground';
+import NavBar from '../components/NavBar';
+import Card from '../components/Card';
+import { useTheme } from '../hooks/useTheme';
+import { ScrollView } from 'react-native-gesture-handler';
 
 function timeStringToHour(timeStr) {
     if (!timeStr || typeof timeStr !== 'string') return 0;
@@ -17,6 +21,7 @@ function timeStringToHour(timeStr) {
 
 function HomeScreen({ navigation }) {
     const {user} = useContext(UserContext);
+    const { colors: color, textStyles } = useTheme();
     const [sleep, setSleep] = useState({
         duration: '6.5',
         start: '11:30 PM',
@@ -53,11 +58,14 @@ function HomeScreen({ navigation }) {
     function DateDisplay() {
         const [currentDate] = useState(new Date());
         return (
-            <View>
-                <Text style={styles.dateText}>
-                    Today's date: {currentDate.toLocaleDateString()}
-                </Text>
-            </View>
+            <Text style={[styles.dateText, { color: color.text }]}>
+                {currentDate.toLocaleDateString('en-US', { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                })}
+            </Text>
         );
     }
    
@@ -82,125 +90,256 @@ function HomeScreen({ navigation }) {
         return fullGreet;
     }
 
+    const navIcons = [
+        {
+            id: 'home',
+            icon: require('../assets/icons/home.png'),
+            isActive: true
+        },
+        {
+            id: 'journal',
+            icon: require('../assets/icons/journal.png'),
+            onPress: () => navigation.navigate('Journal'),
+            isActive: false
+        },
+        {
+            id: 'statistics',
+            icon: require('../assets/icons/graph.png'),
+            onPress: () => navigation.navigate('Statistics'),
+            isActive: false
+        },
+        {
+            id: 'profile',
+            icon: require('../assets/icons/user.png'),
+            onPress: () => navigation.navigate('Profile'),
+            isActive: false
+        }
+    ];
+
   return (
-    <ImageBackground source={background} style={styles.background}>
-    <View style={styles.container}>
-        <View>
-            <Text style={styles.title}>
-                {timeGreeting(user)}
-            </Text>
-            <DateDisplay />
-        </View>
-
-        <View style={styles.clockContainer}>
-            <AnalogClock
-                sleepStart={timeStringToHour(sleep.start)}
-                sleepEnd={timeStringToHour(sleep.end)}
-            />
-
-            {sleep && (
-            <View style = {{marginTop: 20, alignItems: 'center'}}>
-                <Text style = {{color: 'white', fontSize: 18}}>
-                    Last Sleep: {sleep.duration} hours
-                </Text>
-                <Text style = {{color: 'white', fontSize: 18}}>
-                    {sleep.start} - {sleep.end}
-                </Text>
+   <ScreenBackground>
+        <ScrollView>
+            <View style = {styles.header}>
+                <Text style = {[styles.title, { color: color.text }]}>
+                        {timeGreeting(user)}
+                    </Text>
+                    <DateDisplay />
             </View>
-        )}
-        </View>
 
-        <View style={styles.navBar}>
-            <TouchableOpacity style={styles.navIcon}>
-                <Image source={require('../assets/icons/home.png')} style={styles.icon}/>
-            </TouchableOpacity>
+            <View style={styles.clockSection}>
+                <Card variant = "accent" style = {styles.clockCard}>
+                    <AnalogClock
+                        sleepStart = {timeStringToHour(sleep.start)}
+                        sleepEnd = {timeStringToHour(sleep.end)}
+                    />
+                </Card>
+            </View>
 
-            <TouchableOpacity onPress = {() => navigation.navigate('Journal')} style={styles.navIcon}>
-                <Image source={require('../assets/icons/journal.png')} style={styles.icon}/>
-            </TouchableOpacity>
+            {sleep && sleep.duration !== null && (
+                <View style = {styles.sleepDataSection}>
+                    <Card variant = "secondary" style = {styles.sleepDataCard}>
+                        <Text style={[styles.sleepTitle, { color: color.text }]}>
+                            Last Night's Sleep
+                        </Text>
 
-            <TouchableOpacity onPress = {() => navigation.navigate('Statistics')} style={styles.navIcon}>
-                <Image source={require('../assets/icons/graph.png')} style={styles.icon}/>
-            </TouchableOpacity>
+                        <View style = {styles.sleepStats}>
+                            <View style = {styles.sleepStat}>
+                                <Text style={[styles.sleepValue, { color: color.tint }]}>
+                                    {sleep.duration}
+                                </Text>
+                                <Text style={[styles.sleepLabel, { color: color.icon }]}>
+                                    Hours
+                                </Text>
+                            </View>
+                            <View style = {styles.sleepDivider}/>
+                            <View style = {styles.sleepStat}>
+                                <Text style={[styles.sleepValue, { color: color.tint }]}>
+                                    {sleep.start}
+                                </Text>
+                                <Text style={[styles.sleepLabel, { color: color.icon }]}>
+                                    Bedtime
+                                </Text>
+                            </View>
+                            <View style = {styles.sleepDivider}/>
+                            <View style = {styles.sleepStat}>
+                                <Text style={[styles.sleepValue, { color: color.tint }]}>
+                                    {sleep.end}
+                                 </Text>
+                                 <Text style={[styles.sleepLabel, { color: color.icon }]}>
+                                    Wake Time
+                                </Text>
+                            </View>
+                        </View>
+                    </Card>
+                </View>
+            )}
 
-            <TouchableOpacity onPress={() => navigation.navigate('Profile')} style={styles.navIcon}>
-                <Image source={require('../assets/icons/user.png')} style={styles.icon}/>
-            </TouchableOpacity>
-        </View>
-    </View>
-    </ImageBackground>
+            <View style = {styles.quickActions}>
+                <Card variant = "primary" style = {styles.quickActionsCard}>
+                    <Text style={[styles.sectionTitle, { color: color.text }]}>
+                        Quick Actions
+                    </Text>
+                    <View style = {styles.actionButtons}>
+                        <TouchableOpacity
+                            style = {styles.actionButton}
+                            onPress={() => navigation.navigate('NewEntry')}
+                        >
+                            <Image 
+                                source = {require('../assets/icons/journalAddButton.png')} 
+                                style = {styles.actionIcon}
+                            />
+                            <Text style = {[styles.actionText, { color: color.text }]}>
+                                New Entry
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style = {styles.actionButton}
+                            onPress = {() => navigation.navigate('ChatBot')}
+                        >
+                            <Image 
+                                source={require('../assets/icons/journal.png')} 
+                                style={styles.actionIcon}
+                            />
+                            <Text style = {[styles.actionText, { color: color.text }]}>
+                                Sleep Chat
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                </Card>
+            </View>
+             <View style={styles.bottomSpacing}/>
+        </ScrollView>
+        <NavBar items = {navIcons}/>
+   </ScreenBackground>
 );
 
 }
 
 const styles = StyleSheet.create({
-
-    dateText: {
-        fontFamily: 'Arial',
-        fontSize: 20,
-        right: -5,
-        marginTop: 10,
-        color: 'white'
-    },
-
     container: {
         flex: 1,
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        backgroundColor: 'transparent'
-        
     },
-
+    
+    header: {
+        paddingTop: 60,
+        paddingHorizontal: 20,
+        paddingBottom: 20,
+    },
+    
     title: {
-        fontSize: 24,
-        marginTop: 100,
-        left: 1,
-        color: 'white'
+        fontSize: 32,
+        fontWeight: '700',
+        letterSpacing: 0.5,
+        marginBottom: 8,
     },
-
-    clockContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        marginTop: -100,
+    
+    dateText: {
+        fontSize: 18,
+        fontWeight: '400',
+        opacity: 0.8,
+    },
+    
+    clockSection: {
+        paddingHorizontal: 20,
+        marginBottom: 20,
+    },
+    
+    clockCard: {
         alignItems: 'center',
-        marginVertical: 10
+        paddingVertical: 30,
     },
-    navBar: {
-        position: 'absolute',
-        bottom: 20,
-        left: 20,
-        right: 20,
+    
+    sleepDataSection: {
+        paddingHorizontal: 20,
+        marginBottom: 20,
+    },
+    
+    sleepDataCard: {
+        paddingVertical: 25,
+    },
+    
+    sleepTitle: {
+        fontSize: 20,
+        fontWeight: '600',
+        textAlign: 'center',
+        marginBottom: 20,
+    },
+    
+    sleepStats: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        backgroundColor: 'white',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
-        borderTopWidth: 0,
-        borderTopColor: 'black',
-        gap: 35,
-        shadowRadius: 4,
-        elevation: 5,
-        shadowColor: 'black',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        borderRadius: 40,
+        alignItems: 'center',
     },
-
-    navIcon: {
-        alignItems: 'center'
-    },
-
-    icon: {
-        width: 50,
-        height: 50,
-        resizeMode: 'contain'
-    },
-
-    background: {
+    
+    sleepStat: {
+        alignItems: 'center',
         flex: 1,
-        resizeMode: 'cover'
-    }
+    },
+    
+    sleepValue: {
+        fontSize: 24,
+        fontWeight: '700',
+        marginBottom: 4,
+    },
+    
+    sleepLabel: {
+        fontSize: 14,
+        fontWeight: '400',
+        opacity: 0.7,
+    },
+    
+    sleepDivider: {
+        width: 1,
+        height: 40,
+        backgroundColor: 'rgba(123, 158, 137, 0.3)',
+    },
+    
+    quickActions: {
+        paddingHorizontal: 20,
+        marginBottom: 20,
+    },
+    
+    quickActionsCard: {
+        paddingVertical: 25,
+    },
+    
+    sectionTitle: {
+        fontSize: 20,
+        fontWeight: '600',
+        textAlign: 'center',
+        marginBottom: 20,
+    },
+    
+    actionButtons: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+    },
+    
+    actionButton: {
+        alignItems: 'center',
+        paddingVertical: 15,
+        paddingHorizontal: 20,
+        borderRadius: 15,
+        backgroundColor: 'rgba(74, 144, 226, 0.1)',
+        borderWidth: 1,
+        borderColor: 'rgba(74, 144, 226, 0.2)',
+    },
+    
+    actionIcon: {
+        width: 32,
+        height: 32,
+        marginBottom: 8,
+        tintColor: '#4A90E2',
+    },
+    
+    actionText: {
+        fontSize: 14,
+        fontWeight: '500',
+    },
+    
+    bottomSpacing: {
+        height: 120,
+    },
 });
 
 export default HomeScreen;
