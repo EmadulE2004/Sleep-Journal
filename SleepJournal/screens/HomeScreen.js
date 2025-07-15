@@ -84,9 +84,10 @@ function HomeScreen({ navigation }) {
         }
 
         let fullGreet = "";
-        if(user && user.username) {
-            fullGreet = `${greet}, ${user.username}.`;
-        } 
+        const name = user && (user.displayName || user.username);
+        if(name) {
+            fullGreet = `${greet}, ${name}.`;
+        }
         return fullGreet;
     }
 
