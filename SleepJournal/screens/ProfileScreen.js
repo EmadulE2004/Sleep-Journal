@@ -2,52 +2,85 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Button, ScrollView, TextInput, Alert, Modal } from 'react-native';
 import { UserContext } from '../UserContext';
-
+import { auth } from '../firebase'; // <-- Import Firebase Auth
+import { updateProfile, updateEmail, signOut, reauthenticateWithCredential, EmailAuthProvider, updatePassword } from 'firebase/auth';
 
 function ProfileScreen({ navigation }) {
   const { user, setUser } = useContext(UserContext);
 
-  const [username, setUsername] = useState(user.username);
-  const [userEmail, setUserEmail] = useState(user.email);
-  const [userBio, setUserBio] = useState(user.bio);
+  const [username, setUsername] = useState(user?.displayName || '');
+  const [userEmail, setUserEmail] = useState(user?.email || '');
+  const [userBio, setUserBio] = useState(user?.bio || '');
 
   const [showPass, setPass] = useState(false);
   const [currPass, setCurrPass] = useState('');
   const [newPass, setNewPass] = useState('');
 
   useEffect(() => {
-    setUsername(user.username);
-    setUserEmail(user.email);
-    setUserBio(user.bio);
-
+    setUsername(user?.displayName || '');
+    setUserEmail(user?.email || '');
+    setUserBio(user?.bio || '');
     navigation.setOptions({headerBackTitle: 'Home'});
   }, [user]);
 
-  const handleSaveChanges = () => {
-    setUser({
-      ...user,
-      username: username,
-      email: userEmail,
-      bio: userBio,
-    });
-    Alert.alert('Success', 'Profile changes saved!');
-  };
-
-  const passChange = () => {
-    if(currPass === newPass) {
-      Alert.alert("Error", "New password must be different from current password!");
+  // Save changes to Firebase
+  const handleSaveChanges = async () => {
+    try {
+      if (auth.currentUser) {
+        // Update display name
+        if (username !== auth.currentUser.displayName) {
+          await updateProfile(auth.currentUser, { displayName: username });
+        }
+        // Update email
+        if (userEmail !== auth.currentUser.email) {
+          await updateEmail(auth.currentUser, userEmail);
+        }
+        // Optionally update bio in your database if you store it elsewhere
+        setUser({
+          ...auth.currentUser,
+          displayName: username,
+          email: userEmail,
+          bio: userBio,
+        });
+        Alert.alert('Success', 'Profile changes saved!');
+      }
+    } catch (error) {
+      Alert.alert('Error', error.message);
     }
-
-    setPass(false);
-    setCurrPass('');
-    setNewPass('');
-    Alert.alert("Password changed", "Your password has updated.");
   };
 
-  const handleLogout = () => {
+  // Change password with re-authentication
+  const passChange = async () => {
+    if (!currPass || !newPass) {
+      Alert.alert("Error", "Please fill in both fields.");
+      return;
+    }
+    if (currPass === newPass) {
+      Alert.alert("Error", "New password must be different from current password!");
+      return;
+    }
+    try {
+      const credential = EmailAuthProvider.credential(auth.currentUser.email, currPass);
+      await reauthenticateWithCredential(auth.currentUser, credential);
+      await updatePassword(auth.currentUser, newPass);
+      setPass(false);
+      setCurrPass('');
+      setNewPass('');
+      Alert.alert("Password changed", "Your password has updated.");
+    } catch (error) {
+      Alert.alert("Error", error.message);
+    }
+  };
+
+  // Logout using Firebase
+  const handleLogout = async () => {
     Alert.alert("Logout", "Are you sure you want to logout?", [
       {text: "Cancel", style: "cancel"},
-      {text: "Logout", style: "destructive", onPress: () => {navigation.replace('Lock')}}
+      {text: "Logout", style: "destructive", onPress: async () => {
+        await signOut(auth);
+        setUser(null);
+        navigation.replace('Lock');
+      }}
     ]);
   };
 

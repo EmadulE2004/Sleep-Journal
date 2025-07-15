@@ -1,145 +1,176 @@
 // LockScreen.js
 
 import React, { useState, useContext } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from 'react-native'; // Add ImageBackground
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { UserContext } from '../UserContext';
 import ScreenBackground from '../components/ScreenBackground';
 import Card from '../components/Card';
 import { useTheme } from '../hooks/useTheme';
+import { auth } from '../firebase';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
 
 function LockScreen({ navigation }) {
-  const [Email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false); // Add this line
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLogin, setIsLogin] = useState(true); // Toggle between login and signup
+  const [displayName, setDisplayName] = useState('');
   const { setUser } = useContext(UserContext);
-  const {colors: color, textStyles} = useTheme();
+  const { colors: color, textStyles } = useTheme();
 
-  const handleLogin = () => {
-    if (
-      username &&
-      password.length === 8 &&
-      (password.includes('@') || password.includes('!') || password.includes('#') || password.includes('&')) &&
-      (Email.includes('.') && Email.includes('@'))
-    ) {
-      setUser({
-        email: Email,
-        username,
-        password,
-      });
-      Alert.alert('Success', 'Login successful!');
-      navigation.navigate('Home');
-    } else {
-      Alert.alert('Oops', 'You forgot to fill in some fields!');
+  const handleAuth = async () => {
+    if (!email || !password || (!isLogin && !displayName)) {
+      Alert.alert('Error', 'Please fill in all fields.');
+      return;
+    }
+    try {
+      if (isLogin) {
+        // Login
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        setUser(userCredential.user);
+        Alert.alert('Success', 'Login successful!');
+        navigation.navigate('Home');
+      } else {
+        // Sign up
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        // Set display name after signup
+        await updateProfile(userCredential.user, { displayName });
+        setUser({ ...userCredential.user, displayName });
+        Alert.alert('Success', 'Account created!');
+        navigation.navigate('Home');
+      }
+    } catch (error) {
+      Alert.alert('Authentication Error', error.message);
     }
   };
 
   return (
     <ScreenBackground>
-      <View style = {styles.container}>
-        <View style = {styles.header}>
-          <Text style = {[styles.title, {color: color.text}]}>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={[styles.title, { color: color.text }]}>
             Sleep Journal
           </Text>
           <Text style={[styles.subtitle, { color: color.icon }]}>
             Your path to a peaceful night.
           </Text>
 
-          <Card variant = "primary" style = {styles.loginBox}>
-            <Text style = {[styles.loginTitle, { color: color.text }]}>
-              Welcome Back
+          <Card variant="primary" style={styles.loginBox}>
+            <Text style={[styles.loginTitle, { color: color.text }]}>
+              {isLogin ? 'Welcome Back' : 'Create Account'}
             </Text>
 
-            <View style = {styles.inputContainer}>
-            <Text style = {[styles.inputLabel, { color: color.text }]}>
-              Email
-            </Text>
-            <TextInput
-              style = {[styles.input, { 
-                color: color.text,
-                borderColor: color.cardBorder,
-                backgroundColor: 'rgba(26, 35, 50, 0.3)'
-              }]}
-              placeholder = "Enter your email"
-              placeholderTextColor = {color.icon}
-              value = {Email}
-              onChangeText = {setEmail}
-              autoCapitalize = "none"
-              keyboardType = "email-address"
-            />
-          </View>
-
-          <View style = {styles.inputContainer}>
-            <Text style = {[styles.inputLabel, { color: color.text }]}>
-              Username
-            </Text>
-            <TextInput
-              style = {[styles.input, { 
-                color: color.text,
-                borderColor: color.cardBorder,
-                backgroundColor: 'rgba(26, 35, 50, 0.3)'
-              }]}
-              placeholder = "Enter your username"
-              placeholderTextColor = {color.icon}
-              value = {username}
-              onChangeText = {setUsername}
-              autoCapitalize = "none"
-            />
-          </View>
-
-            <View style = {styles.inputContainer}>
-            <Text style = {[styles.inputLabel, { color: color.text }]}>
-              Password
-            </Text>
-            <View style = {styles.passwordContainer}>
-              <TextInput
-                style = {[styles.input, styles.passwordInput, { 
-                  color: color.text,
-                  borderColor: color.cardBorder,
-                  backgroundColor: 'rgba(26, 35, 50, 0.3)'
-                }]}
-                placeholder = "Enter your password"
-                placeholderTextColor = {color.icon}
-                value = {password}
-                onChangeText = {text => setPassword(text.slice(0, 8))}
-                secureTextEntry = {!showPassword}
-                maxLength = {8}
-              />
-              <TouchableOpacity
-                onPress = {() => setShowPassword(!showPassword)}
-                style = {styles.showPasswordButton}
-              >
-                <Text style = {[styles.showPasswordText, { color: color.tint }]}>
-                  {showPassword ? 'Hide' : 'Show'}
+            {!isLogin && (
+              <View style={styles.inputContainer}>
+                <Text style={[styles.inputLabel, { color: color.text }]}>
+                  Display Name
                 </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-          
-          <TouchableOpacity 
-            style = {[
-              styles.loginButton,
-              { 
-                backgroundColor: (username && password.length === 8 && Email.includes('@')) 
-                  ? color.tint 
-                  : 'rgba(74, 144, 226, 0.3)'
-              }
-            ]} 
-            onPress = {handleLogin}
-            disabled = {!(username && password.length === 8 && Email.includes('@'))}
-          >
-            <Text style = {[
-              styles.loginButtonText,
-              { color: (username && password.length === 8 && Email.includes('@')) 
-                ? '#0B1426' 
-                : color.icon 
-              }
-            ]}>
-              Log in
-            </Text>
-          </TouchableOpacity>
-          </Card>
+                <TextInput
+                  style={[
+                    styles.input,
+                    {
+                      color: color.text,
+                      borderColor: color.cardBorder,
+                      backgroundColor: 'rgba(26, 35, 50, 0.3)',
+                    },
+                  ]}
+                  placeholder="Enter your name"
+                  placeholderTextColor={color.icon}
+                  value={displayName}
+                  onChangeText={setDisplayName}
+                  autoCapitalize="words"
+                />
+              </View>
+            )}
 
+            <View style={styles.inputContainer}>
+              <Text style={[styles.inputLabel, { color: color.text }]}>
+                Email
+              </Text>
+              <TextInput
+                style={[
+                  styles.input,
+                  {
+                    color: color.text,
+                    borderColor: color.cardBorder,
+                    backgroundColor: 'rgba(26, 35, 50, 0.3)',
+                  },
+                ]}
+                placeholder="Enter your email"
+                placeholderTextColor={color.icon}
+                value={email}
+                onChangeText={setEmail}
+                autoCapitalize="none"
+                keyboardType="email-address"
+              />
+            </View>
+
+            <View style={styles.inputContainer}>
+              <Text style={[styles.inputLabel, { color: color.text }]}>
+                Password
+              </Text>
+              <View style={styles.passwordContainer}>
+                <TextInput
+                  style={[
+                    styles.input,
+                    styles.passwordInput,
+                    {
+                      color: color.text,
+                      borderColor: color.cardBorder,
+                      backgroundColor: 'rgba(26, 35, 50, 0.3)',
+                    },
+                  ]}
+                  placeholder="Enter your password"
+                  placeholderTextColor={color.icon}
+                  value={password}
+                  onChangeText={text => setPassword(text.slice(0, 8))}
+                  secureTextEntry={!showPassword}
+                  maxLength={8}
+                />
+                <TouchableOpacity
+                  onPress={() => setShowPassword(!showPassword)}
+                  style={styles.showPasswordButton}
+                >
+                  <Text style={[styles.showPasswordText, { color: color.tint }]}>
+                    {showPassword ? 'Hide' : 'Show'}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+
+            <TouchableOpacity
+              style={[
+                styles.loginButton,
+                {
+                  backgroundColor: email.includes('@') && password.length === 8
+                    ? color.tint
+                    : 'rgba(74, 144, 226, 0.3)',
+                },
+              ]}
+              onPress={handleAuth}
+              disabled={!(email.includes('@') && password.length === 8)}
+            >
+              <Text style={[
+                styles.loginButtonText,
+                {
+                  color: email.includes('@') && password.length === 8
+                    ? '#0B1426'
+                    : color.icon
+                }
+              ]}>
+                {isLogin ? 'Log in' : 'Sign up'}
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => setIsLogin(!isLogin)}
+              style={styles.toggleButton}
+            >
+              <Text style={[styles.toggleButtonText, { color: color.text }]}>
+                {isLogin ? 'Need an account? Sign up' : 'Already have an account? Log in'}
+              </Text>
+            </TouchableOpacity>
+          </Card>
         </View>
       </View>
     </ScreenBackground>
@@ -153,12 +184,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 20,
   },
-  
+
   header: {
     alignItems: 'center',
     marginBottom: 40,
   },
-  
+
   title: {
     fontSize: 42,
     fontWeight: '700',
@@ -171,38 +202,38 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     textAlign: 'center',
     opacity: 0.8,
-    marginBottom: 8
+    marginBottom: 8,
   },
-  
+
   loginCard: {
     width: '100%',
     maxWidth: 350,
     marginBottom: 40,
   },
-  
+
   loginBox: {
     width: 350,
     height: 500,
     maxWidth: '90%',
   },
-  
+
   loginTitle: {
     fontSize: 24,
     fontWeight: '600',
     textAlign: 'center',
     marginBottom: 30,
   },
-  
+
   inputContainer: {
     marginBottom: 20,
   },
-  
+
   inputLabel: {
     fontSize: 16,
     fontWeight: '600',
     marginBottom: 8,
   },
-  
+
   input: {
     width: '100%',
     height: 50,
@@ -211,17 +242,17 @@ const styles = StyleSheet.create({
     fontSize: 16,
     borderWidth: 1,
   },
-  
+
   passwordContainer: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  
+
   passwordInput: {
     flex: 1,
     marginRight: 12,
   },
-  
+
   showPasswordButton: {
     paddingVertical: 8,
     paddingHorizontal: 12,
@@ -230,12 +261,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(74, 144, 226, 0.2)',
   },
-  
+
   showPasswordText: {
     fontSize: 14,
     fontWeight: '600',
   },
-  
+
   loginButton: {
     width: '100%',
     paddingVertical: 16,
@@ -244,10 +275,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 10,
   },
-  
+
   loginButtonText: {
     fontSize: 18,
     fontWeight: '600',
+  },
+
+  toggleButton: {
+    marginTop: 15,
+    alignItems: 'center',
+  },
+
+  toggleButtonText: {
+    fontSize: 14,
+    fontWeight: '500',
   },
 });
 
