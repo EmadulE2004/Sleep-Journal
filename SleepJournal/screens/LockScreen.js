@@ -162,13 +162,33 @@ function LockScreen({ navigation }) {
               </Text>
             </TouchableOpacity>
 
+            {isLogin && (
+              <>
+                <TouchableOpacity
+                  style={[
+                    styles.saveChangesButton,
+                    { 
+                      backgroundColor: 'rgba(74, 144, 226, 0.12)',
+                      borderColor: 'rgba(74, 144, 226, 0.25)',
+                      borderWidth: 1.5,
+                      marginTop: 16,
+                    }
+                  ]}
+                  onPress={() => setIsLogin(false)}
+                >
+                  <Text style={[styles.saveChangesButtonText, { color: color.tint }]}>Sign up</Text>
+                </TouchableOpacity>
+                <Text style={[styles.signUpPrompt, { color: color.icon }]}>New? Sign up now!</Text>
+              </>
+            )}
+
             <TouchableOpacity
               onPress={() => setIsLogin(!isLogin)}
               style={styles.toggleButton}
             >
-              <Text style={[styles.toggleButtonText, { color: color.text }]}>
-                {isLogin ? 'New? Sign up NEOW!' : 'have an account? Click me '}
-              </Text>
+              {!isLogin && (
+                <Text style={[styles.toggleButtonText, { color: color.text }]}>Already have an account? Log in</Text>
+              )}
             </TouchableOpacity>
           </Card>
         </View>
@@ -289,6 +309,36 @@ const styles = StyleSheet.create({
   toggleButtonText: {
     fontSize: 14,
     fontWeight: '500',
+  },
+  signUpButton: {
+    marginTop: 12,
+    paddingVertical: 14,
+    borderRadius: 16,
+    borderWidth: 1,
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+  },
+  signUpButtonText: {
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  signUpPrompt: {
+    marginTop: 6,
+    fontSize: 14,
+    textAlign: 'center',
+    opacity: 0.7,
+  },
+  saveChangesButton: {
+    marginTop: 12,
+    paddingVertical: 14,
+    borderRadius: 16,
+    borderWidth: 1,
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+  },
+  saveChangesButtonText: {
+    fontSize: 16,
+    fontWeight: '600',
   },
 });
 
