@@ -128,7 +128,7 @@ function HomeScreen({ navigation }) {
             </View>
 
             <View style={styles.clockSection}>
-                <Card variant = "accent" style = {styles.clockCard}>
+                <Card variant = "secondary" style = {[styles.sleepDataCard, styles.centeredClockCard]}>
                     <AnalogClock
                         sleepStart = {timeStringToHour(sleep.start)}
                         sleepEnd = {timeStringToHour(sleep.end)}
@@ -340,6 +340,10 @@ const styles = StyleSheet.create({
     
     bottomSpacing: {
         height: 120,
+    },
+    centeredClockCard: {
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 });
 
