@@ -1,4 +1,4 @@
-// MyNewSleepJournalApp/App.js done
+// MyNewSleepJournalApp/App.js 
 
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
@@ -65,8 +65,7 @@ export default function App() {
               name = "Statistics"
               component = {Statistics}
               options = {{
-                title: 'Statistics',
-                headerShown: true
+                headerShown: false
               }}
             />
 
