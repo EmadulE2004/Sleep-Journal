@@ -22,8 +22,8 @@ const NavBar: React.FC<NavBarProps> = ({ items, style }) => {
   const { colors, glass, gradients } = useTheme();
 
   return (
-    <View style={[styles.container, style]}>
-      <BlurView intensity={20} tint = "dark" style = {styles.blurContainer}>
+    <View style = {[styles.container, style]}>
+      <BlurView intensity = {20} tint = "dark" style = {styles.blurContainer}>
         <LinearGradient
           colors = {[gradients.glass.start, gradients.glass.end]}
           style = {styles.gradientOverlay}
