@@ -4,7 +4,7 @@ import { UserContext } from '../UserContext';
 import { JournalContext } from '../JournalContext';
 import { Calendar } from 'react-native-calendars'; // <-- Add this import
 import MoodSelection from './MoodSelection';
-import ScreenBackground from '../components/ScreenBackground';
+import ScreenBackgroundNoMoon from '../components/ScreenBackgroundNoMoon';
 import NavBar from '../components/NavBar';
 import Card from '../components/Card';
 import { useTheme } from '../hooks/useTheme';
@@ -12,8 +12,7 @@ import { useTheme } from '../hooks/useTheme';
 const Journal = ({ navigation }) => {
   const { user } = useContext(UserContext);
   const { entries, removeEntry } = useContext(JournalContext); 
-    const { colors: color, textStyles } = useTheme();
-
+  const { colors: color, textStyles } = useTheme();
 
   const [mood, setMood] = useState(true);
   const [select, setSelect] = useState(null);
@@ -81,14 +80,15 @@ const Journal = ({ navigation }) => {
         }
 
         let fullGreet = "";
-        if(user && user.username) {
-            fullGreet = `${greet}, ${user.username}.`;
-        } 
+        const name = user && (user.displayName || user.username);
+        if(name) {
+            fullGreet = `${greet}, ${name}.`;
+        }
         return fullGreet;
     }
 
   return (
-    <ScreenBackground>
+    <ScreenBackgroundNoMoon>
       <ScrollView contentContainerStyle = {styles.scrollContent}>
         <View style = {styles.userSection}>
           <Text style = {[styles.greet, { color: color.text }]}> 
@@ -169,7 +169,7 @@ const Journal = ({ navigation }) => {
       </TouchableOpacity>
       <NavBar items = {navIcons} />
       <MoodSelection visible = {mood} select = {moodSelect} close = {() => setMood(false)} />
-    </ScreenBackground>
+    </ScreenBackgroundNoMoon>
   );
 };
 
