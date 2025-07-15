@@ -47,8 +47,7 @@ export default function App() {
               name="Profile"
               component={ProfileScreen}
               options={{ 
-                title: 'My Profile', 
-                headerShown: true 
+                headerShown: false 
               }}
             />
 

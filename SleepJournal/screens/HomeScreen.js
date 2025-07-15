@@ -9,6 +9,7 @@ import NavBar from '../components/NavBar';
 import Card from '../components/Card';
 import { useTheme } from '../hooks/useTheme';
 import { ScrollView } from 'react-native-gesture-handler';
+import ScreenBackgroundNoMoon from '../components/ScreenBackgroundNoMoon';
 
 function timeStringToHour(timeStr) {
     if (!timeStr || typeof timeStr !== 'string') return 0;
@@ -118,7 +119,7 @@ function HomeScreen({ navigation }) {
     ];
 
   return (
-   <ScreenBackground>
+   <ScreenBackgroundNoMoon>
         <ScrollView>
             <View style = {styles.header}>
                 <Text style = {[styles.title, { color: color.text }]}>
@@ -211,7 +212,7 @@ function HomeScreen({ navigation }) {
              <View style={styles.bottomSpacing}/>
         </ScrollView>
         <NavBar items = {navIcons}/>
-   </ScreenBackground>
+   </ScreenBackgroundNoMoon>
 );
 
 }
