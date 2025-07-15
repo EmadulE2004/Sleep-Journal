@@ -10,7 +10,7 @@ interface BackgroundProps {
   style?: any;
 }
 
-const Background: React.FC<BackgroundProps> = ({ children, style }) => {
+const ScreenBackground: React.FC<BackgroundProps> = ({ children, style }) => {
   const { gradients } = useTheme();
   const starAnimation = useRef(new Animated.Value(0)).current;
   const moonAnimation = useRef(new Animated.Value(0)).current;
@@ -162,4 +162,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Background;
+export default ScreenBackground;

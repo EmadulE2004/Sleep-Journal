@@ -1,9 +1,11 @@
 // LockScreen.js
 
 import React, { useState, useContext } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, ImageBackground } from 'react-native'; // Add ImageBackground
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from 'react-native'; // Add ImageBackground
 import { UserContext } from '../UserContext';
-import { BlurView } from '@react-native-community/blur';
+import ScreenBackground from '../components/ScreenBackground';
+import Card from '../components/Card';
+import { useTheme } from '../hooks/useTheme';
 
 function LockScreen({ navigation }) {
   const [Email, setEmail] = useState('');
@@ -11,6 +13,7 @@ function LockScreen({ navigation }) {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false); // Add this line
   const { setUser } = useContext(UserContext);
+  const {colors: color, textStyles} = useTheme();
 
   const handleLogin = () => {
     if (
@@ -32,130 +35,208 @@ function LockScreen({ navigation }) {
   };
 
   return (
-    <ImageBackground
-      source={require('../assets/backgrounds/SleepBack.jpg')}
-      style={styles.background}
-      resizeMode="cover"
-    >
-      <View style={styles.container}>
-        <Text style={styles.title}> Sleep Journal</Text>
-        <View style={styles.frosted}>
-          <BlurView
-            style={StyleSheet.absoluteFill}
-            blurType="light"
-            blurAmount={15}
-            reducedTransparencyFallbackColor="white"
-          />
-          <View style={styles.loginBox}>
+    <ScreenBackground>
+      <View style = {styles.container}>
+        <View style = {styles.header}>
+          <Text style = {[styles.title, {color: color.text}]}>
+            Sleep Journal
+          </Text>
+
+          <Card variant = "primary" style = {styles.loginBox}>
+            <Text style = {[styles.loginTitle, { color: color.text }]}>
+              Welcome Back
+            </Text>
+
+            <View style = {styles.inputContainer}>
+            <Text style = {[styles.inputLabel, { color: color.text }]}>
+              Email
+            </Text>
             <TextInput
-              style={styles.input}
-              placeholder="Email"
-              placeholderTextColor={'black'}
-              value={Email}
-              onChangeText={setEmail}
-              autoCapitalize="none"
+              style = {[styles.input, { 
+                color: color.text,
+                borderColor: color.cardBorder,
+                backgroundColor: 'rgba(26, 35, 50, 0.3)'
+              }]}
+              placeholder = "Enter your email"
+              placeholderTextColor = {color.icon}
+              value = {Email}
+              onChangeText = {setEmail}
+              autoCapitalize = "none"
+              keyboardType = "email-address"
             />
+          </View>
+
+          <View style = {styles.inputContainer}>
+            <Text style = {[styles.inputLabel, { color: color.text }]}>
+              Username
+            </Text>
             <TextInput
-              style={styles.input}
-              placeholder="Username"
-              placeholderTextColor={'black'}
-              value={username}
-              onChangeText={setUsername}
-              autoCapitalize="none"
+              style = {[styles.input, { 
+                color: color.text,
+                borderColor: color.cardBorder,
+                backgroundColor: 'rgba(26, 35, 50, 0.3)'
+              }]}
+              placeholder = "Enter your username"
+              placeholderTextColor = {color.icon}
+              value = {username}
+              onChangeText = {setUsername}
+              autoCapitalize = "none"
             />
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          </View>
+
+            <View style = {styles.inputContainer}>
+            <Text style = {[styles.inputLabel, { color: color.text }]}>
+              Password
+            </Text>
+            <View style = {styles.passwordContainer}>
               <TextInput
-                style={[styles.input, { flex: 1, marginBottom: 0 }]}
-                placeholder="Password"
-                placeholderTextColor={'black'}
-                value={password}
-                onChangeText={text => setPassword(text.slice(0, 8))}
-                secureTextEntry={!showPassword}
-                maxLength={8}
+                style = {[styles.input, styles.passwordInput, { 
+                  color: color.text,
+                  borderColor: color.cardBorder,
+                  backgroundColor: 'rgba(26, 35, 50, 0.3)'
+                }]}
+                placeholder = "Enter your password"
+                placeholderTextColor = {color.icon}
+                value = {password}
+                onChangeText = {text => setPassword(text.slice(0, 8))}
+                secureTextEntry = {!showPassword}
+                maxLength = {8}
               />
               <TouchableOpacity
-                onPress={() => setShowPassword(!showPassword)}
-                style={{ marginLeft: 10, padding: 5 }}
+                onPress = {() => setShowPassword(!showPassword)}
+                style = {styles.showPasswordButton}
               >
-                <Text style={{ color: 'blue', fontWeight: 'bold' }}>
+                <Text style = {[styles.showPasswordText, { color: color.tint }]}>
                   {showPassword ? 'Hide' : 'Show'}
                 </Text>
               </TouchableOpacity>
             </View>
-            <TouchableOpacity style={styles.button} onPress={handleLogin}>
-              <Text style={styles.buttonText}>Login</Text>
-            </TouchableOpacity>
           </View>
+          
+          <TouchableOpacity 
+            style = {[
+              styles.loginButton,
+              { 
+                backgroundColor: (username && password.length === 8 && Email.includes('@')) 
+                  ? color.tint 
+                  : 'rgba(74, 144, 226, 0.3)'
+              }
+            ]} 
+            onPress = {handleLogin}
+            disabled = {!(username && password.length === 8 && Email.includes('@'))}
+          >
+            <Text style = {[
+              styles.loginButtonText,
+              { color: (username && password.length === 8 && Email.includes('@')) 
+                ? '#0B1426' 
+                : color.icon 
+              }
+            ]}>
+              Log in
+            </Text>
+          </TouchableOpacity>
+          </Card>
+
         </View>
       </View>
-    </ImageBackground>
+    </ScreenBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-  },
-  loginBox: {
-    width: '100%',
-    maxWidth: 300,
-    backgroundColor: 'rgba(255,255,255,0.7)', // <-- Make background semi-transparent
-    borderRadius: 20,
-    padding: 20,
-    shadowColor: 'black',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
   container: {
-    flex: 1, 
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(35,60,103,0.7)', // Optional: semi-transparent overlay
-    padding: 20,
+    paddingHorizontal: 20,
   },
+  
+  header: {
+    alignItems: 'center',
+    marginBottom: 40,
+  },
+  
   title: {
-    fontFamily: 'roboto',
-    fontWeight: 'bold',
-    fontSize: 45,
-    color: '#CCDBEE', 
-    marginBottom: 25,
+    fontSize: 42,
+    fontWeight: '700',
+    letterSpacing: 1,
+    marginBottom: 8,
   },
+  
+  loginCard: {
+    width: '100%',
+    maxWidth: 350,
+    marginBottom: 40,
+  },
+  
+  loginBox: {
+    width: 350,
+    height: 500,
+    maxWidth: '90%',
+  },
+  
+  loginTitle: {
+    fontSize: 24,
+    fontWeight: '600',
+    textAlign: 'center',
+    marginBottom: 30,
+  },
+  
+  inputContainer: {
+    marginBottom: 20,
+  },
+  
+  inputLabel: {
+    fontSize: 16,
+    fontWeight: '600',
+    marginBottom: 8,
+  },
+  
   input: {
     width: '100%',
-    maxWidth: 300,
-    height: 45,
-    backgroundColor: '#F0F0F0',
-    borderRadius: 15,
-    paddingHorizontal: 15,
-    marginBottom: 15,
+    height: 50,
+    borderRadius: 12,
+    paddingHorizontal: 16,
+    fontSize: 16,
     borderWidth: 1,
-    borderColor: 'black',
   },
-  button: {
-    width: '100%',
-    marginTop: 10,
-    maxWidth: 300,
-    backgroundColor: 'green',
-    paddingVertical: 12,
-    borderRadius: 15,
+  
+  passwordContainer: {
+    flexDirection: 'row',
     alignItems: 'center',
   },
-  buttonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
+  
+  passwordInput: {
+    flex: 1,
+    marginRight: 12,
   },
-  frosted: {
+  
+  showPasswordButton: {
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    backgroundColor: 'rgba(74, 144, 226, 0.1)',
+    borderWidth: 1,
+    borderColor: 'rgba(74, 144, 226, 0.2)',
+  },
+  
+  showPasswordText: {
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  
+  loginButton: {
     width: '100%',
-    maxWidth: 300,
-    borderRadius: 20,
-    overflow: 'hidden',
-    marginBottom: 20,
-    alignSelf: 'center',
+    paddingVertical: 16,
+    paddingHorizontal: 24,
+    borderRadius: 16,
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  
+  loginButtonText: {
+    fontSize: 18,
+    fontWeight: '600',
   },
 });
 
