@@ -1,9 +1,10 @@
 //ProfileScreen.js
 import React, { useContext, useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Button, ScrollView, TextInput, Alert, Modal } from 'react-native';
+import { View, Text, StyleSheet, Button, ScrollView, TextInput, Alert, Modal, Image, TouchableOpacity } from 'react-native';
 import { UserContext } from '../UserContext';
 import { auth } from '../firebase'; // <-- Import Firebase Auth
 import { updateProfile, updateEmail, signOut, reauthenticateWithCredential, EmailAuthProvider, updatePassword } from 'firebase/auth';
+import * as ImagePicker from 'expo-image-picker';
 
 function ProfileScreen({ navigation }) {
   const { user, setUser } = useContext(UserContext);
@@ -11,6 +12,7 @@ function ProfileScreen({ navigation }) {
   const [username, setUsername] = useState(user?.displayName || '');
   const [userEmail, setUserEmail] = useState(user?.email || '');
   const [userBio, setUserBio] = useState(user?.bio || '');
+  const [profilePic, setProfilePic] = useState(user?.photoURL || null);
 
   const [showPass, setPass] = useState(false);
   const [currPass, setCurrPass] = useState('');
@@ -20,8 +22,34 @@ function ProfileScreen({ navigation }) {
     setUsername(user?.displayName || '');
     setUserEmail(user?.email || '');
     setUserBio(user?.bio || '');
+    setProfilePic(user?.photoURL || null);
     navigation.setOptions({headerBackTitle: 'Home'});
   }, [user]);
+
+  // Image picker handler
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 0.7,
+    });
+
+    if (!result.canceled && result.assets && result.assets.length > 0) {
+      setProfilePic(result.assets[0].uri);
+      // Optionally update Firebase user profile
+      if (auth.currentUser) {
+        await updateProfile(auth.currentUser, { photoURL: result.assets[0].uri });
+        setUser({
+          ...auth.currentUser,
+          displayName: username,
+          email: userEmail,
+          bio: userBio,
+          photoURL: result.assets[0].uri,
+        });
+      }
+    }
+  };
 
   // Save changes to Firebase
   const handleSaveChanges = async () => {
@@ -87,6 +115,19 @@ function ProfileScreen({ navigation }) {
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
+        {/* Profile Picture Section */}
+        <TouchableOpacity style={styles.avatarContainer} onPress={pickImage}>
+          <Image
+            source={
+              profilePic
+                ? { uri: profilePic }
+                : require('../assets/icons/user.png')
+            }
+            style={styles.avatar}
+          />
+          <Text style={styles.avatarText}>Change Photo</Text>
+        </TouchableOpacity>
+
         <Text style={styles.title}>My Profile</Text>
 
         <View style={styles.field}>
@@ -264,7 +305,23 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginTop: 10
-  }
+  },
+  avatarContainer: {
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  avatar: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: '#e9ecef',
+    marginBottom: 8,
+  },
+  avatarText: {
+    color: '#007bff',
+    fontSize: 14,
+    fontWeight: '500',
+  },
 });
 
 export default ProfileScreen;
