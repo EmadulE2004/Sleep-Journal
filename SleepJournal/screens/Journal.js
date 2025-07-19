@@ -302,7 +302,7 @@ const Journal = ({ navigation }) => {
         {selectedMood && (
           <View style = {styles.moodSection}>
             <Card variant = "primary" style = {styles.moodCard}>
-              <Text style={[styles.moodTitle, { color: color.text }]}>
+              <Text style = {[styles.moodTitle, { color: color.text }]}>
                 Today's Mood
               </Text>
               <View style = {styles.moodDisplay}>
@@ -313,18 +313,18 @@ const Journal = ({ navigation }) => {
                     { tintColor: getMoodColor(selectedMood) }
                   ]}
                 />
-                <Text style={[styles.moodText, { color: color.text }]}>
+                <Text style = {[styles.moodText, { color: color.text }]}>
                   {selectedMood.charAt(0).toUpperCase() + selectedMood.slice(1)}
                 </Text>
               </View>
-              <Text style={[styles.moodFeedback, { color: color.icon }]}>
+              <Text style = {[styles.moodFeedback, { color: color.icon }]}>
                 {moodFeedback}
               </Text>
               <TouchableOpacity 
-                style={[styles.changeMoodButton, { borderColor: color.tint }]}
-                onPress={() => setShowMoodSelection(true)}
+                style = {[styles.changeMoodButton, { borderColor: color.tint }]}
+                onPress = {() => setShowMoodSelection(true)}
               >
-                <Text style={[styles.changeMoodButtonText, { color: color.tint }]}>
+                <Text style = {[styles.changeMoodButtonText, { color: color.tint }]}>
                   Change Mood
                 </Text>
               </TouchableOpacity>
