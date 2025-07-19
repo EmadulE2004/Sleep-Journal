@@ -20,6 +20,23 @@ Emad:
 -	Successfully migrated project from Expo to Cocoapods, demonstrating native mobile development expertise.
 
 Mahfuz:
+Contributions:
+- Dynamic greeting based on time of day
+
+- Sleep duration calculation(currently in beta)
+
+- Quick actions: direct links to Botpress and journal
+
+- Analog clock with visual sleep tracking (arc highlight)
+
+- Mood selection with analysis to provide personalized feedback and advice
+  
+- Sleep score generated from hours slept
+
+- Comprehensive navigation bar with relevant links
+
+- Full UI/UX redesign including animated backgrounds and responsive CSS
+
 
 
 
