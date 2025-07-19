@@ -39,9 +39,13 @@ Node.js
 Cocoapods
 VScode(obviously)
 A bunch of npm installs here are a few:
+
 npm install expo-blur
+
 npm install expo-linear-gradient
+
 npm install @react-native-async-storage/async-storage
+
 npx expo install expo-image-picker
 
 Those are just some of the libraries. There may be more. Be sure to run these by first:
