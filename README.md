@@ -1,4 +1,4 @@
-<h4>Sleep Journal AI</h4>
+<h2>Sleep Journal AI</h2>
 
 <h3>Sleep Companion for users on achieving healthy sleep</h3>
 
