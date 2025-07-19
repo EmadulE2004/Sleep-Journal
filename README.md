@@ -57,13 +57,13 @@ Notice you have to create a valid account as there is Firebase integration, and 
 
 
 <h2>Here are some screenshots of the applications:</h2>
-<img width="120" height="260" alt="Simulator Screenshot - iPhone 16 Pro - 2025-07-18 at 23 41 35" src="https://github.com/user-attachments/assets/cd1092b1-80ca-4142-bf27-ca5ee1eeab30" />
-<img width="1206" height="2622" alt="Simulator Screenshot - iPhone 16 Pro - 2025-07-18 at 23 42 07" src="https://github.com/user-attachments/assets/099b5b1e-745c-4f48-86aa-e5841422b674" />
-<img width="1206" height="2622" alt="Simulator Screenshot - iPhone 16 Pro - 2025-07-18 at 23 42 46" src="https://github.com/user-attachments/assets/e6c3ece3-a2b6-4ec5-8409-639de7f911c7" />
-<img width="1206" height="2622" alt="Simulator Screenshot - iPhone 16 Pro - 2025-07-18 at 23 43 04" src="https://github.com/user-attachments/assets/168d0ae3-b23e-4ac3-96f6-faa2a5588f6a" />
-<img width="1206" height="2622" alt="Simulator Screenshot - iPhone 16 Pro - 2025-07-18 at 23 43 14" src="https://github.com/user-attachments/assets/41a8eead-d5c4-406e-8591-b792a701f139" />
-<img width="1206" height="2622" alt="Simulator Screenshot - iPhone 16 Pro - 2025-07-18 at 23 44 03" src="https://github.com/user-attachments/assets/0a08382f-45fc-4a61-b20d-7525228102b1" />
-<img width="1205" height="2337" alt="Simulator Screenshot - iPhone 16 Pro - 2025-07-18 at 23 44 30" src="https://github.com/user-attachments/assets/833eccd3-3f61-44e2-8a32-a88a9fdc8b6d" />
+<img width="300" height="250" alt="Simulator Screenshot - iPhone 16 Pro - 2025-07-18 at 23 41 35" src="https://github.com/user-attachments/assets/cd1092b1-80ca-4142-bf27-ca5ee1eeab30" />
+<img width="300" height="250" alt="Simulator Screenshot - iPhone 16 Pro - 2025-07-18 at 23 42 07" src="https://github.com/user-attachments/assets/099b5b1e-745c-4f48-86aa-e5841422b674" />
+<img width="300" height="250" alt="Simulator Screenshot - iPhone 16 Pro - 2025-07-18 at 23 42 46" src="https://github.com/user-attachments/assets/e6c3ece3-a2b6-4ec5-8409-639de7f911c7" />
+<img width="300" height="250" alt="Simulator Screenshot - iPhone 16 Pro - 2025-07-18 at 23 43 04" src="https://github.com/user-attachments/assets/168d0ae3-b23e-4ac3-96f6-faa2a5588f6a" />
+<img width="300" height="250" alt="Simulator Screenshot - iPhone 16 Pro - 2025-07-18 at 23 43 14" src="https://github.com/user-attachments/assets/41a8eead-d5c4-406e-8591-b792a701f139" />
+<img width="300" height="250" alt="Simulator Screenshot - iPhone 16 Pro - 2025-07-18 at 23 44 03" src="https://github.com/user-attachments/assets/0a08382f-45fc-4a61-b20d-7525228102b1" />
+<img width="300" height="250" alt="Simulator Screenshot - iPhone 16 Pro - 2025-07-18 at 23 44 30" src="https://github.com/user-attachments/assets/833eccd3-3f61-44e2-8a32-a88a9fdc8b6d" />
 
 
 
