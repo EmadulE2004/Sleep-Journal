@@ -240,17 +240,6 @@ const Journal = ({ navigation }) => {
     return colors[mood] || color.tint;
   };
 
-  function DateDisplay() {
-    const [currentDate] = useState(new Date());
-    return (
-      <View>
-        <Text style={styles.dateText}>
-          Today's date: {currentDate.toLocaleDateString()}
-        </Text>
-      </View>
-    );
-  }
-
   const navIcons = [
     {
       id: 'home',
